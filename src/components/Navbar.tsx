@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { navItems } from "@/data/nav";
+import { team } from "@/data/team";
 import { Logo } from "./Logo";
 
 export function Navbar() {
@@ -39,6 +40,16 @@ export function Navbar() {
               </Link>
             </li>
           ))}
+          <li>
+            <a
+              href={team.teamStore}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center rounded-full bg-white text-[var(--navy)] px-3.5 py-1.5 font-bold hover:bg-[var(--sky)] transition-colors"
+            >
+              🛍️ Shop
+            </a>
+          </li>
         </ul>
 
         {/* Mobile toggle */}
@@ -76,6 +87,17 @@ export function Navbar() {
                 </Link>
               </li>
             ))}
+            <li className="col-span-2">
+              <a
+                href={team.teamStore}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setOpen(false)}
+                className="block rounded-lg px-3 py-2.5 text-sm font-bold bg-white text-[var(--navy)] text-center"
+              >
+                🛍️ Team Store
+              </a>
+            </li>
           </ul>
         </div>
       )}

@@ -174,26 +174,38 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ===== Instagram CTA ===== */}
+      {/* ===== Follow & Shop ===== */}
       <section className="section">
-        <div className="container-page">
+        <div className="container-page grid gap-5 md:grid-cols-2">
           <a
             href={team.instagram}
             target="_blank"
             rel="noopener noreferrer"
-            className="card card-hover p-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left"
+            className="card card-hover p-8 flex flex-col items-start gap-3"
           >
-            <div>
-              <p className="eyebrow">Follow the Jaguars</p>
-              <h2 className="mt-1 text-2xl font-extrabold text-[var(--navy)]">
-                See more on Instagram
-              </h2>
-              <p className="mt-1 text-[var(--muted)]">
-                Team photos, match-day moments and more at {team.instagramHandle}.
-              </p>
-            </div>
-            <span className="inline-flex items-center rounded-full bg-[var(--navy)] text-white px-6 py-3 text-sm font-bold whitespace-nowrap">
+            <p className="eyebrow">Follow the Jaguars</p>
+            <h2 className="text-2xl font-extrabold text-[var(--navy)]">See more on Instagram</h2>
+            <p className="text-[var(--muted)]">
+              Team photos, match-day moments and more at {team.instagramHandle}.
+            </p>
+            <span className="mt-2 inline-flex items-center rounded-full bg-[var(--navy)] text-white px-5 py-2.5 text-sm font-bold">
               📷 {team.instagramHandle} ↗
+            </span>
+          </a>
+
+          <a
+            href={team.teamStore}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="card card-hover p-8 flex flex-col items-start gap-3"
+          >
+            <p className="eyebrow">Rep the team</p>
+            <h2 className="text-2xl font-extrabold text-[var(--navy)]">Official Team Store</h2>
+            <p className="text-[var(--muted)]">
+              Jaguars hats, hoodies, tees and more — fully customizable, shipped to your door (via BSN Sports).
+            </p>
+            <span className="mt-2 inline-flex items-center rounded-full bg-[var(--navy)] text-white px-5 py-2.5 text-sm font-bold">
+              🛍️ Shop the store ↗
             </span>
           </a>
         </div>

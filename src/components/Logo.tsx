@@ -1,31 +1,24 @@
-// Simple inline SVG mark: a tennis ball + the Jaguar navy. No external assets.
+import Image from "next/image";
+
+// The official FJA Jaguars mark. Navy-on-white, so on dark backgrounds it
+// sits inside a white rounded badge to stay crisp.
 export function Logo({ size = 40, light = false }: { size?: number; light?: boolean }) {
-  const ball = light ? "#ffffff" : "#0a2647";
-  const seam = light ? "#1d4ed8" : "#f5b301";
   return (
-    <svg
-      width={size}
-      height={size}
-      viewBox="0 0 48 48"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      aria-hidden="true"
+    <span
+      className={`inline-grid place-items-center rounded-full overflow-hidden shrink-0 ${
+        light ? "bg-white ring-1 ring-white/40" : "bg-white ring-1 ring-[var(--line)]"
+      }`}
+      style={{ width: size, height: size }}
     >
-      <circle cx="24" cy="24" r="21" fill={ball} stroke={light ? "#ffffff" : "#0a2647"} strokeWidth="2" />
-      <path
-        d="M9 14c8 4 8 16 0 20"
-        stroke={seam}
-        strokeWidth="2.5"
-        strokeLinecap="round"
-        fill="none"
+      <Image
+        src="/jaguar-logo.png"
+        alt="Frankel Jewish Academy Jaguars logo"
+        width={size}
+        height={size}
+        className="object-contain"
+        style={{ padding: Math.round(size * 0.08) }}
+        priority
       />
-      <path
-        d="M39 14c-8 4-8 16 0 20"
-        stroke={seam}
-        strokeWidth="2.5"
-        strokeLinecap="round"
-        fill="none"
-      />
-    </svg>
+    </span>
   );
 }
