@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { seasons } from "@/data/seasons";
+import { d4Champions } from "@/data/d4champions";
 import { PageHeader, Badge } from "@/components/ui";
 
 export const metadata: Metadata = {
@@ -121,6 +122,46 @@ export default function HistoryPage() {
               </article>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="section bg-slate-50 border-t border-[var(--line)]">
+        <div className="container-page">
+          <h2 className="text-2xl font-extrabold text-[var(--navy)]">The Division 4 picture</h2>
+          <p className="mt-2 max-w-2xl text-[15px] text-[#25303f]">
+            Frankel competes in MHSAA <strong>Division 4</strong>, the small-school division. To win it all, you go
+            through perennial powers like Grosse Pointe Woods University Liggett and Ann Arbor Greenhills. Liggett won
+            the 2025 state title at the same finals where the Jaguars qualified all eight flights — with regional
+            rival Jackson Lumen Christi finishing runner-up. Here are the official Division 4 state champions.
+          </p>
+          <div className="mt-6 overflow-x-auto rounded-xl border border-[var(--line)] bg-white">
+            <table className="w-full text-sm border-collapse">
+              <thead>
+                <tr className="text-left text-[var(--muted)] border-b border-[var(--line)]">
+                  <th className="py-3 px-4 font-semibold">Year</th>
+                  <th className="py-3 px-4 font-semibold">State Champion</th>
+                  <th className="py-3 px-4 font-semibold">Runner-Up</th>
+                </tr>
+              </thead>
+              <tbody>
+                {d4Champions.map((c) => (
+                  <tr key={c.year} className="border-b border-[var(--line)] last:border-0">
+                    <td className="py-2.5 px-4 font-semibold text-[var(--navy)] whitespace-nowrap">{c.year}</td>
+                    <td className="py-2.5 px-4 text-[#25303f]">
+                      {c.champion}
+                      {c.frankelFoe && (
+                        <span className="ml-2 rounded-full bg-[var(--navy)]/10 px-2 py-0.5 text-xs font-semibold text-[var(--navy)]">
+                          on Frankel&apos;s schedule
+                        </span>
+                      )}
+                    </td>
+                    <td className="py-2.5 px-4 text-[var(--muted)]">{c.runnerUp ?? "—"}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p className="mt-3 text-xs text-[var(--muted)]">Source: MHSAA official records (mhsaa.com).</p>
         </div>
       </section>
     </>
