@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { team } from "@/data/team";
 import { coaches } from "@/data/coaches";
+import { plaquePhoto } from "@/data/photos";
 import { PageHeader } from "@/components/ui";
 
 export const metadata: Metadata = {
@@ -54,6 +56,22 @@ export default function AboutPage() {
                 <div>
                   <h3 className="text-xl font-extrabold text-[var(--navy)]">{c.name}</h3>
                   <p className="text-[var(--royal)] font-bold">{c.role}</p>
+                  {c.name === "Larry Stark" && (
+                    <figure className="mt-4">
+                      <div className="relative aspect-[4/3] rounded-xl overflow-hidden ring-1 ring-[var(--line)]">
+                        <Image
+                          src={plaquePhoto}
+                          alt="Larry Stark's Michigan Jewish Sports Hall of Fame plaque"
+                          fill
+                          sizes="(max-width: 768px) 100vw, 33vw"
+                          className="object-cover"
+                        />
+                      </div>
+                      <figcaption className="mt-2 text-xs text-[var(--muted)]">
+                        Larry Stark&apos;s Michigan Jewish Sports Hall of Fame plaque (inducted 2006).
+                      </figcaption>
+                    </figure>
+                  )}
                   {c.honors && (
                     <ul className="mt-4 space-y-2 text-sm">
                       {c.honors.map((h, i) => (

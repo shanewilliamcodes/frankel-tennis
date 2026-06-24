@@ -1,30 +1,13 @@
-import Link from "next/link";
 import type { Metadata } from "next";
-import { schedule, scheduleIsPlaceholder, scheduleSeasonLabel, scheduleNote } from "@/data/schedule";
-import { PageHeader, Badge, NeedsUpdateBanner } from "@/components/ui";
+import { schedule, scheduleSeasonLabel } from "@/data/schedule";
+import { team } from "@/data/team";
+import { PageHeader } from "@/components/ui";
+import { ScheduleList } from "@/components/ScheduleList";
 
 export const metadata: Metadata = {
   title: "Schedule",
-  description: "Match schedule, practices and key dates for Frankel Jaguars boys tennis.",
+  description: "Match schedule, practices, challenge matches and key dates for Frankel Jaguars boys tennis.",
 };
-
-const typeTone: Record<string, "blue" | "gold" | "gray" | "green"> = {
-  Match: "blue",
-  Tournament: "gold",
-  Practice: "gray",
-  "Key Date": "green",
-};
-
-function formatDate(d: string) {
-  // Accept ISO or readable strings.
-  const date = new Date(d);
-  if (Number.isNaN(date.getTime())) return d;
-  return date.toLocaleDateString("en-US", {
-    weekday: "short",
-    month: "short",
-    day: "numeric",
-  });
-}
 
 export default function SchedulePage() {
   return (
@@ -32,54 +15,29 @@ export default function SchedulePage() {
       <PageHeader
         eyebrow="Season"
         title="Schedule & Key Dates"
-        subtitle={`Matches, practices and important dates. ${scheduleSeasonLabel}.`}
+        subtitle={`Every match, tournament, challenge match and practice. ${scheduleSeasonLabel}.`}
       />
       <section className="section">
         <div className="container-page space-y-6">
-          {scheduleIsPlaceholder ? (
-            <NeedsUpdateBanner>
-              These are sample entries — replace with the official schedule.
-            </NeedsUpdateBanner>
-          ) : (
-            scheduleNote && (
-              <div className="rounded-xl bg-[var(--sky)] border border-[var(--line)] px-4 py-3 text-sm text-[var(--navy)]">
-                {scheduleNote}
-              </div>
-            )
-          )}
+          {/* TeamSnap callout for players & parents */}
+          <div className="rounded-xl bg-[var(--navy)] text-white p-5 flex flex-col sm:flex-row sm:items-center gap-3 justify-between">
+            <div>
+              <p className="font-extrabold">Players & parents: this schedule also lives in TeamSnap</p>
+              <p className="text-sm text-white/80">
+                Get live updates, RSVPs and notifications, and home courts at {team.homeCourts}.
+              </p>
+            </div>
+            <a
+              href={team.teamSnap}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center rounded-full bg-white text-[var(--navy)] px-5 py-2.5 text-sm font-bold hover:bg-[var(--sky)] transition-colors whitespace-nowrap"
+            >
+              📲 Open in TeamSnap ↗
+            </a>
+          </div>
 
-          <ol className="space-y-3">
-            {schedule.map((e, i) => (
-              <li key={i} className="card card-hover p-4 sm:p-5">
-                <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-5">
-                  <div className="sm:w-28 shrink-0">
-                    <div className="text-sm font-extrabold text-[var(--navy)]">{formatDate(e.date)}</div>
-                    {e.time && <div className="text-xs text-[var(--muted)]">{e.time}</div>}
-                  </div>
-                  <div className="flex-1">
-                    <div className="flex flex-wrap items-center gap-2">
-                      <Badge tone={typeTone[e.type]}>{e.type}</Badge>
-                      {e.home !== undefined && (
-                        <Badge tone="gray">{e.home ? "Home" : "Away"}</Badge>
-                      )}
-                      {e.result && <Badge tone="green">{e.result}</Badge>}
-                    </div>
-                    <h3 className="mt-2 font-bold text-[var(--navy)]">
-                      {e.opponentKey ? (
-                        <Link href={`/opponents/${e.opponentKey}`} className="hover:text-[var(--royal)]">
-                          {e.title} →
-                        </Link>
-                      ) : (
-                        e.title
-                      )}
-                    </h3>
-                    {e.location && <p className="text-sm text-[var(--muted)]">📍 {e.location}</p>}
-                    {e.note && <p className="mt-1 text-sm text-[var(--muted)]">{e.note}</p>}
-                  </div>
-                </div>
-              </li>
-            ))}
-          </ol>
+          <ScheduleList events={schedule} />
         </div>
       </section>
     </>

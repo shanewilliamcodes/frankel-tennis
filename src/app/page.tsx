@@ -1,5 +1,7 @@
 import Link from "next/link";
+import Image from "next/image";
 import { team, programStats } from "@/data/team";
+import { heroPhoto } from "@/data/photos";
 import { seasons } from "@/data/seasons";
 import { news } from "@/data/news";
 import { announcements } from "@/data/extras";
@@ -23,38 +25,50 @@ export default function Home() {
               "radial-gradient(circle at 20% 20%, #1d4ed8 0, transparent 40%), radial-gradient(circle at 80% 0%, #2563eb 0, transparent 35%)",
           }}
         />
-        <div className="container-page relative py-16 sm:py-24">
-          <div className="flex items-center gap-2">
-            <Logo size={28} light />
-            <span className="text-xs font-bold uppercase tracking-[0.2em] text-[var(--sky)]">
-              {team.schoolName} · {team.mascot}
-            </span>
+        <div className="container-page relative py-16 sm:py-24 grid lg:grid-cols-2 gap-10 items-center">
+          <div>
+            <div className="flex items-center gap-2">
+              <Logo size={28} light />
+              <span className="text-xs font-bold uppercase tracking-[0.2em] text-[var(--sky)]">
+                {team.schoolName} · {team.mascot}
+              </span>
+            </div>
+            <h1 className="mt-5 text-4xl sm:text-6xl font-extrabold tracking-tight leading-[1.05]">
+              Frankel Jaguars
+              <br />
+              <span className="text-[var(--sky)]">Boys Tennis</span>
+            </h1>
+            <p className="mt-5 max-w-2xl text-lg text-white/85 leading-relaxed">{team.intro}</p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Link
+                href="/schedule"
+                className="inline-flex items-center rounded-full bg-white px-5 py-2.5 text-sm font-bold text-[var(--navy)] hover:bg-[var(--sky)] transition-colors"
+              >
+                View Schedule
+              </Link>
+              <Link
+                href="/history"
+                className="inline-flex items-center rounded-full border border-white/40 px-5 py-2.5 text-sm font-bold text-white hover:bg-white/10 transition-colors"
+              >
+                History &amp; Stats
+              </Link>
+              <Link
+                href="/roster"
+                className="inline-flex items-center rounded-full border border-white/40 px-5 py-2.5 text-sm font-bold text-white hover:bg-white/10 transition-colors"
+              >
+                Meet the Team
+              </Link>
+            </div>
           </div>
-          <h1 className="mt-5 text-4xl sm:text-6xl font-extrabold tracking-tight leading-[1.05]">
-            Frankel Jaguars
-            <br />
-            <span className="text-[var(--sky)]">Boys Tennis</span>
-          </h1>
-          <p className="mt-5 max-w-2xl text-lg text-white/85 leading-relaxed">{team.intro}</p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <Link
-              href="/schedule"
-              className="inline-flex items-center rounded-full bg-white px-5 py-2.5 text-sm font-bold text-[var(--navy)] hover:bg-[var(--sky)] transition-colors"
-            >
-              View Schedule
-            </Link>
-            <Link
-              href="/history"
-              className="inline-flex items-center rounded-full border border-white/40 px-5 py-2.5 text-sm font-bold text-white hover:bg-white/10 transition-colors"
-            >
-              History &amp; Stats
-            </Link>
-            <Link
-              href="/roster"
-              className="inline-flex items-center rounded-full border border-white/40 px-5 py-2.5 text-sm font-bold text-white hover:bg-white/10 transition-colors"
-            >
-              Meet the Team
-            </Link>
+          <div className="relative aspect-[4/3] rounded-2xl overflow-hidden ring-1 ring-white/20 shadow-2xl hidden lg:block">
+            <Image
+              src={heroPhoto}
+              alt="Frankel Jaguars boys tennis team"
+              fill
+              sizes="(max-width: 1024px) 0px, 45vw"
+              className="object-cover"
+              priority
+            />
           </div>
         </div>
       </section>
@@ -140,6 +154,7 @@ export default function Home() {
             <QuickCard href="/history" title="History & Stats" emoji="📊" desc="Season-by-season results going back to 2015." />
             <QuickCard href="/opponents" title="Opponents" emoji="🆚" desc="Who we're facing — with links to look up their rosters." />
             <QuickCard href="/news" title="News & Press" emoji="📰" desc="Articles about the team, the coaches and the run to states." />
+            <QuickCard href="/photos" title="Photos" emoji="📸" desc="Team photos, match days and moments from the season." />
             <QuickCard href="/about" title="About the Team" emoji="ℹ️" desc="The story, plus Coach Larry & Monica Stark's bios." />
           </div>
         </div>
@@ -174,22 +189,23 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ===== Follow & Shop ===== */}
+      {/* ===== Players & Shop ===== */}
       <section className="section">
         <div className="container-page grid gap-5 md:grid-cols-2">
           <a
-            href={team.instagram}
+            href={team.teamSnap}
             target="_blank"
             rel="noopener noreferrer"
             className="card card-hover p-8 flex flex-col items-start gap-3"
           >
-            <p className="eyebrow">Follow the Jaguars</p>
-            <h2 className="text-2xl font-extrabold text-[var(--navy)]">See more on Instagram</h2>
+            <p className="eyebrow">Players & parents</p>
+            <h2 className="text-2xl font-extrabold text-[var(--navy)]">TeamSnap</h2>
             <p className="text-[var(--muted)]">
-              Team photos, match-day moments and more at {team.instagramHandle}.
+              Schedules, availability, lineups and team messaging all live in TeamSnap. Log in to stay in sync
+              with the team.
             </p>
             <span className="mt-2 inline-flex items-center rounded-full bg-[var(--navy)] text-white px-5 py-2.5 text-sm font-bold">
-              📷 {team.instagramHandle} ↗
+              📲 Open TeamSnap ↗
             </span>
           </a>
 

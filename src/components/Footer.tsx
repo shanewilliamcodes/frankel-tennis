@@ -41,11 +41,11 @@ export function Footer() {
             {address.city}, {address.state} {address.zip}
           </address>
           <div className="mt-3 flex flex-col gap-1 text-sm">
+            <a href={team.teamSnap} target="_blank" rel="noopener noreferrer" className="text-[var(--sky)] hover:text-white transition-colors">
+              📲 TeamSnap (players & parents) ↗
+            </a>
             <a href={team.teamStore} target="_blank" rel="noopener noreferrer" className="text-[var(--sky)] hover:text-white transition-colors">
               🛍️ Team Store (BSN Sports) ↗
-            </a>
-            <a href={team.instagram} target="_blank" rel="noopener noreferrer" className="text-[var(--sky)] hover:text-white transition-colors">
-              📷 Instagram {team.instagramHandle} ↗
             </a>
             <a href={team.schoolWebsite} target="_blank" rel="noopener noreferrer" className="text-[var(--sky)] hover:text-white transition-colors">
               frankelja.org ↗

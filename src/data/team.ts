@@ -18,9 +18,8 @@ export const team = {
   },
   schoolWebsite: "https://frankelja.org/",
   athleticsWebsite: "https://www.frankelathletics.com/",
-  instagram: "https://www.instagram.com/fjatennis/",
-  instagramHandle: "@fjatennis",
   teamStore: "https://sideline.bsnsports.com/schools/michigan/westbloomfield/frankel-jewish-academy",
+  teamSnap: "https://go.teamsnap.com/",
   homeCourts: "Drake Sports Park",
   // A short tagline used in the hero and page headers.
   tagline: "Small school. Mighty program.",
