@@ -37,9 +37,11 @@ export type Season = {
 export const seasons: Season[] = [
   {
     year: 2025,
-    headline: "Season details to be confirmed",
+    headline: "Catholic League play (full season stats coming)",
+    league: "3-2 in Catholic League AA Division duals",
     highlights: [
-      "Results for the fall 2025 season have not been added yet — update this entry in src/data/seasons.ts once final records are available.",
+      "Catholic League results: beat Ann Arbor Gabriel Richard 6-2, Divine Child 5-3, and Riverview Gabriel Richard 5-3; fell to Jackson Lumen Christi 6-2 and Warren De La Salle 5-3.",
+      "Full season stats — non-league duals, the flight-by-flight lineup, and regional/state results — will be added once available (TennisReporting/MHSAA).",
     ],
     needsUpdate: true,
   },
@@ -94,12 +96,27 @@ export const seasons: Season[] = [
   },
   {
     year: 2022,
-    headline: "First-ever Regional Champions · 14th at State",
-    regional: "Regional Champions (program first)",
-    state: "14th at Division 4 State Finals",
+    headline: "First-ever Regional Champions",
+    dualRecord: "6-0-2",
+    league: "2nd in Catholic League (4-4 ties vs. De La Salle & Divine Child)",
+    regional: "Regional Champions — 22 points at Grosse Ile (Oct. 6), a program first",
+    state: "Tied for 13th of 27 teams (5 pts) — Division 4 State Finals, Kalamazoo",
     highlights: [
-      "Won the program's first-ever MHSAA regional championship.",
+      "Won the program's first-ever MHSAA regional championship — and reached state as a regional champ for the first time in school history.",
       "Larry Stark named Regional Coach of the Year by his fellow coaches.",
+      "Seventh state-tournament trip in nine years, with seven seniors on the roster.",
+      "Senior co-captain Ethan Grey was the third and last of the Grey brothers to play for Frankel — three brothers across the program's rise.",
+      "Four flights won regional championships: Hayden Dean (3S), Tony Carson (4S), Rubin/Robbins (3D), and Shaevsky/Miller (4D).",
+    ],
+    lineup: [
+      { flight: "1 Singles", players: ["Ethan Grey"], note: "Senior co-captain · reached regional semifinals" },
+      { flight: "2 Singles", players: ["Max Charlip"] },
+      { flight: "3 Singles", players: ["Hayden Dean"], note: "Regional Champion" },
+      { flight: "4 Singles", players: ["Tony Carson"], note: "Regional Champion" },
+      { flight: "1 Doubles", players: ["Aidan Charlip", "Gabe Gordon"], note: "Reached regional semifinals" },
+      { flight: "2 Doubles", players: ["Merrick Michaelson", "AJ Goodman"], note: "Reached regional semifinals" },
+      { flight: "3 Doubles", players: ["Ryan Rubin", "Caleb Robbins"], note: "Regional Champions" },
+      { flight: "4 Doubles", players: ["Harry Shaevsky", "Jonah Miller"], note: "Regional Champions" },
     ],
   },
   {

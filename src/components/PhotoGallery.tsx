@@ -42,16 +42,11 @@ export function PhotoGallery({ photos }: { photos: Photo[] }) {
           >
             <Image
               src={p.src}
-              alt={p.caption ?? "Frankel Jaguars tennis photo"}
+              alt="Frankel Jaguars tennis"
               fill
               sizes="(max-width: 768px) 50vw, 33vw"
               className="object-cover transition-transform duration-300 group-hover:scale-105"
             />
-            {p.caption && (
-              <span className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-3 text-left text-xs font-semibold text-white opacity-0 group-hover:opacity-100 transition-opacity">
-                {p.caption}
-              </span>
-            )}
           </button>
         ))}
       </div>
@@ -78,21 +73,16 @@ export function PhotoGallery({ photos }: { photos: Photo[] }) {
             ‹
           </button>
           <figure className="max-w-5xl w-full" onClick={(e) => e.stopPropagation()}>
-            <div className="relative w-full h-[70vh]">
+            <div className="relative w-full h-[80vh]">
               <Image
                 src={photos[open].src}
-                alt={photos[open].caption ?? "Frankel Jaguars tennis photo"}
+                alt="Frankel Jaguars tennis"
                 fill
                 sizes="100vw"
                 className="object-contain"
                 priority
               />
             </div>
-            {photos[open].caption && (
-              <figcaption className="mt-3 text-center text-sm text-white/80">
-                {photos[open].caption}
-              </figcaption>
-            )}
           </figure>
           <button
             type="button"

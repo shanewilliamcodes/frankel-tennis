@@ -18,6 +18,11 @@ export default function HistoryPage() {
       />
       <section className="section">
         <div className="container-page">
+          <div className="mb-8 rounded-xl bg-slate-50 border border-[var(--line)] px-4 py-3 text-sm text-[var(--muted)]">
+            Detail varies by season: where the Detroit Jewish News published full match stats (2021–2024) you&apos;ll
+            find complete flight-by-flight lineups. The 2025 league results are in; full 2025 regional/state stats
+            will be added once available. The earliest seasons (2015–2019) predate that detailed coverage.
+          </div>
           <div className="space-y-8">
             {seasons.map((s) => (
               <article key={s.year} className="card p-6 sm:p-8">

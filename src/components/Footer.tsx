@@ -59,7 +59,7 @@ export function Footer() {
       <div className="border-t border-white/10">
         <div className="container-page py-5 text-xs text-white/55 flex flex-col sm:flex-row gap-2 justify-between">
           <span>© {new Date().getFullYear()} {team.schoolName} Boys Tennis. Go Jaguars!</span>
-          <span>Unofficial team site · built for the players, families &amp; fans.</span>
+          <span>Unofficial team site · built for the players &amp; parents.</span>
         </div>
       </div>
     </footer>

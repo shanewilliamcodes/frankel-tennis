@@ -4,12 +4,18 @@ export type Coach = {
   bio: string[];
   honors?: string[];
   quote?: { text: string; by?: string };
+  photo?: string;
+  photoCaption?: string;
+  photoAspect?: "portrait" | "landscape";
 };
 
 export const coaches: Coach[] = [
   {
     name: "Larry Stark",
     role: "Head Coach",
+    photo: "/photos/p09.jpg",
+    photoCaption: "Larry Stark's Michigan Jewish Sports Hall of Fame plaque (inducted 2006).",
+    photoAspect: "landscape",
     bio: [
       "Larry Stark took over the Frankel boys tennis program in 2014, and his arrival coincided almost exactly with the most successful stretch in school history — the Jaguars had never reached the state tournament before he became coach, and have since become a Division 4 fixture.",
       "Before Frankel, Stark coached boys tennis at West Bloomfield High School for eight years. A retired teacher, he is known as a \"no-cut\" coach: everyone who comes out makes the team, becomes part of it, and learns a sport they can play for life.",
@@ -32,6 +38,9 @@ export const coaches: Coach[] = [
   {
     name: "Monica Stark",
     role: "Assistant Coach",
+    photo: "/coaches/monica-stark.jpg",
+    photoCaption: "Assistant coach Monica Stark.",
+    photoAspect: "portrait",
     bio: [
       "Monica Stark has been the boys tennis team's assistant coach for six-plus seasons, working alongside her husband, Larry. Together they have built a program defined by its family atmosphere and underdog grit.",
       "Because Frankel observes Shabbat and the Jewish holidays, the Jaguars often get less practice and match time than their opponents. \"We pack a lot in when we get the chance,\" Monica says — and the results speak for themselves.",

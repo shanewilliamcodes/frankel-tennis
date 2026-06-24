@@ -15,7 +15,7 @@ export default function OpponentsPage() {
       <PageHeader
         eyebrow="Scouting report"
         title="Opponents"
-        subtitle="The schools we face — a little background on each, plus links to look up their rosters and results."
+        subtitle="The schools we face, with Frankel's head-to-head history against each. Full opponent rosters are rarely published online — the best public sources are the Catholic League site and MaxPreps, linked below."
       />
       <section className="section">
         <div className="container-page">
