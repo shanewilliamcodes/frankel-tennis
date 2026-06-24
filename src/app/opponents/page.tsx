@@ -15,14 +15,21 @@ export default function OpponentsPage() {
       <PageHeader
         eyebrow="Scouting report"
         title="Opponents"
-        subtitle="The schools we face, with Frankel's head-to-head history against each. Full opponent rosters are rarely published online — the best public sources are the Catholic League site and MaxPreps, linked below."
+        subtitle="The schools we face, with Frankel's head-to-head history against each. For the Catholic League rivals and our regular-season measuring sticks, you'll find their 2025 record, head coach and full roster — pulled from TennisReporting."
       />
       <section className="section">
         <div className="container-page">
           <div className="grid gap-5 md:grid-cols-2">
             {opponents.map((o) => (
               <Link key={o.key} href={`/opponents/${o.key}`} className="card card-hover p-6 block">
-                <h2 className="text-lg font-extrabold text-[var(--navy)]">{o.name}</h2>
+                <div className="flex items-start justify-between gap-3">
+                  <h2 className="text-lg font-extrabold text-[var(--navy)]">{o.name}</h2>
+                  {o.record2025 && (
+                    <span className="shrink-0 rounded-full bg-slate-100 px-2.5 py-1 text-xs font-bold text-[var(--navy)] whitespace-nowrap">
+                      ’25: {o.record2025}
+                    </span>
+                  )}
+                </div>
                 {o.city && <p className="text-sm text-[var(--muted)]">{o.city}</p>}
                 {o.notes && <p className="mt-3 text-sm text-[#25303f] line-clamp-3">{o.notes}</p>}
                 <span className="mt-4 inline-block text-sm font-bold text-[var(--royal)]">Scouting page →</span>

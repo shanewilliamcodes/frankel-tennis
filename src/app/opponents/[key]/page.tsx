@@ -47,12 +47,59 @@ export default async function OpponentPage({
 
       <section className="section">
         <div className="container-page max-w-3xl">
-          {opp.notes && <p className="text-lg leading-relaxed text-[#25303f]">{opp.notes}</p>}
+          {(opp.record2025 || opp.coach || opp.vsFrankel2025) && (
+            <div className="grid gap-4 sm:grid-cols-3">
+              {opp.record2025 && (
+                <div className="card p-5">
+                  <p className="text-xs font-semibold uppercase tracking-wide text-[var(--muted)]">2025 Record</p>
+                  <p className="mt-1 text-2xl font-extrabold text-[var(--navy)]">{opp.record2025}</p>
+                </div>
+              )}
+              {opp.vsFrankel2025 && (
+                <div className="card p-5">
+                  <p className="text-xs font-semibold uppercase tracking-wide text-[var(--muted)]">
+                    Last meeting
+                  </p>
+                  <p className="mt-1 text-sm font-bold text-[#25303f]">{opp.vsFrankel2025}</p>
+                </div>
+              )}
+              {opp.coach && (
+                <div className="card p-5">
+                  <p className="text-xs font-semibold uppercase tracking-wide text-[var(--muted)]">Head Coach</p>
+                  <p className="mt-1 text-sm font-bold text-[#25303f]">{opp.coach}</p>
+                </div>
+              )}
+            </div>
+          )}
+
+          {opp.notes && (
+            <p className="mt-8 text-lg leading-relaxed text-[#25303f]">{opp.notes}</p>
+          )}
+
+          {opp.roster2025 && opp.roster2025.length > 0 && (
+            <div className="mt-8">
+              <h2 className="text-xl font-extrabold text-[var(--navy)]">2025 Roster</h2>
+              <p className="mt-1 text-sm text-[var(--muted)]">
+                The most recent roster on record (the season Frankel last faced them).
+              </p>
+              <div className="mt-4 grid gap-2 sm:grid-cols-2">
+                {opp.roster2025.map((p) => (
+                  <div
+                    key={p.name}
+                    className="flex items-center justify-between rounded-lg border border-[var(--line)] bg-white px-4 py-2 text-sm"
+                  >
+                    <span className="font-semibold text-[#25303f]">{p.name}</span>
+                    {p.grade && <span className="text-[var(--muted)]">Gr. {p.grade}</span>}
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
 
           <div className="mt-8 card p-6">
-            <h2 className="font-extrabold text-[var(--navy)]">Look up their roster &amp; results</h2>
+            <h2 className="font-extrabold text-[var(--navy)]">More on {opp.name}</h2>
             <p className="mt-1 text-sm text-[var(--muted)]">
-              Head-to-head lineups and scores can be found here:
+              Roster and record above are from TennisReporting. For live lineups and scores:
             </p>
             <div className="mt-4 flex flex-wrap gap-3">
               {links.map((l) => (
