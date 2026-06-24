@@ -19,9 +19,9 @@ export default function HistoryPage() {
       <section className="section">
         <div className="container-page">
           <div className="mb-8 rounded-xl bg-slate-50 border border-[var(--line)] px-4 py-3 text-sm text-[var(--muted)]">
-            Detail varies by season: for 2021–2025 you&apos;ll find complete flight-by-flight lineups and, for 2025,
-            the full dual-by-dual results (sourced from TennisReporting and the Detroit Jewish News). The earliest
-            seasons (2015–2019) predate that detailed coverage.
+            Detail varies by season: 2021–2025 have complete flight-by-flight lineups, and 2017, 2019, 2020 and 2025
+            include the full dual-by-dual results (sourced from TennisReporting and the Detroit Jewish News). The
+            earliest seasons (2015–2016) predate the detailed online record.
           </div>
           <div className="space-y-8">
             {seasons.map((s) => (
