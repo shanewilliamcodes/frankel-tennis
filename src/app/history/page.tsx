@@ -19,9 +19,9 @@ export default function HistoryPage() {
       <section className="section">
         <div className="container-page">
           <div className="mb-8 rounded-xl bg-slate-50 border border-[var(--line)] px-4 py-3 text-sm text-[var(--muted)]">
-            Detail varies by season: where the Detroit Jewish News published full match stats (2021–2024) you&apos;ll
-            find complete flight-by-flight lineups. The 2025 league results are in; full 2025 regional/state stats
-            will be added once available. The earliest seasons (2015–2019) predate that detailed coverage.
+            Detail varies by season: for 2021–2025 you&apos;ll find complete flight-by-flight lineups and, for 2025,
+            the full dual-by-dual results (sourced from TennisReporting and the Detroit Jewish News). The earliest
+            seasons (2015–2019) predate that detailed coverage.
           </div>
           <div className="space-y-8">
             {seasons.map((s) => (
@@ -48,6 +48,43 @@ export default function HistoryPage() {
                       </li>
                     ))}
                   </ul>
+                )}
+
+                {s.results && s.results.length > 0 && (
+                  <details className="mt-5 group">
+                    <summary className="cursor-pointer select-none text-sm font-bold text-[var(--royal)]">
+                      View full results ({s.results.length})
+                    </summary>
+                    <ul className="mt-4 divide-y divide-[var(--line)]">
+                      {s.results.map((r, i) => {
+                        const tone =
+                          r.outcome === "W"
+                            ? "bg-green-100 text-green-800"
+                            : r.outcome === "L"
+                            ? "bg-red-100 text-red-700"
+                            : r.outcome === "T"
+                            ? "bg-amber-100 text-amber-800"
+                            : "bg-slate-100 text-slate-600";
+                        return (
+                          <li key={i} className="flex items-center gap-3 py-2 text-sm">
+                            <span className="w-14 shrink-0 text-[var(--muted)] tabular-nums">{r.date}</span>
+                            <span
+                              className={`inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-xs font-bold ${tone}`}
+                            >
+                              {r.outcome}
+                            </span>
+                            <span className="flex-1 text-[#25303f]">
+                              {r.opponent}
+                              {r.note && <span className="text-[var(--muted)]"> · {r.note}</span>}
+                            </span>
+                            {r.score && (
+                              <span className="shrink-0 font-semibold text-[var(--navy)] tabular-nums">{r.score}</span>
+                            )}
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </details>
                 )}
 
                 {s.lineup && s.lineup.length > 0 && (

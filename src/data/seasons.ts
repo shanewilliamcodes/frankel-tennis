@@ -20,6 +20,15 @@ export type LineupSpot = {
   note?: string;
 };
 
+// One dual match / tournament line in a season's results log.
+export type SeasonResult = {
+  date: string; // e.g. "Sep 8"
+  opponent: string;
+  outcome: "W" | "L" | "T" | "—";
+  score?: string; // e.g. "6-2"
+  note?: string; // e.g. "Catholic League" or "Division 4 Regional"
+};
+
 export type Season = {
   year: number;
   // Short headline result for the timeline.
@@ -30,6 +39,8 @@ export type Season = {
   state?: string;
   highlights: string[];
   lineup?: LineupSpot[];
+  // Full dual-by-dual results, newest data where we have it (via TennisReporting).
+  results?: SeasonResult[];
   // Set true when details still need to be confirmed/filled in.
   needsUpdate?: boolean;
 };
@@ -37,13 +48,47 @@ export type Season = {
 export const seasons: Season[] = [
   {
     year: 2025,
-    headline: "Catholic League play (full season stats coming)",
-    league: "3-2 in Catholic League AA Division duals",
+    headline: "Division 4 State Finals — all eight flights qualified",
+    dualRecord: "6-7-2",
+    league: "4-2 vs. Catholic League AA opponents",
+    regional: "Division 4 Regional at Grosse Ile",
+    state: "Division 4 State Finals (Midland) — full lineup qualified",
     highlights: [
-      "Catholic League results: beat Ann Arbor Gabriel Richard 6-2, Divine Child 5-3, and Riverview Gabriel Richard 5-3; fell to Jackson Lumen Christi 6-2 and Warren De La Salle 5-3.",
-      "Full season stats — non-league duals, the flight-by-flight lineup, and regional/state results — will be added once available (TennisReporting/MHSAA).",
+      "A senior-led, rebuilding team sent all eight flights to the Division 4 State Finals on Oct. 17 (team title won by University Liggett).",
+      "No. 4 singles Shyah Lakind (12-7) was the story of the postseason — three wins at the Division 4 Regional, then a win at the State Finals.",
+      "No. 2 singles Robbie Feldman (11-8) also won a match at the State Finals, and the No. 4 doubles team of Noah Tepper & Moses Schuchman won a state match too.",
+      "Beat Catholic League rivals Ann Arbor Gabriel Richard (6-2), Divine Child (5-3), Riverview Gabriel Richard (5-3) and Notre Dame Prep (5-2); the league losses came to eventual regional champ Jackson Lumen Christi and Warren De La Salle.",
+      "Six seniors — Robbie Feldman, Louie Kowalsky, Hudson Rosner, and Aidan & Austin Squarcia among them — anchored a lineup that mixed in two sophomores and a freshman across doubles.",
     ],
-    needsUpdate: true,
+    lineup: [
+      { flight: "1 Singles", players: ["Brandon Witt"], record: "7-10", note: "Junior · won his Regional opener" },
+      { flight: "2 Singles", players: ["Robbie Feldman"], record: "11-8", note: "Senior · won a State Finals match" },
+      { flight: "3 Singles", players: ["Louie Kowalsky"], record: "10-8", note: "Senior" },
+      { flight: "4 Singles", players: ["Shyah Lakind"], record: "12-7", note: "Junior · 3 Regional wins · won at State" },
+      { flight: "1 Doubles", players: ["Austin Squarcia", "Hudson Rosner"], record: "10-9", note: "Both seniors" },
+      { flight: "2 Doubles", players: ["Aidan Squarcia", "Drew Edelstein"], record: "5-12" },
+      { flight: "3 Doubles", players: ["Aaron Schuchman", "Ethan Bocknek"], record: "3-9", note: "Senior & freshman" },
+      { flight: "4 Doubles", players: ["Noah Tepper", "Moses Schuchman"], record: "4-12", note: "Won a State Finals match" },
+    ],
+    results: [
+      { date: "Aug 21", opponent: "Grosse Pointe Woods University Liggett", outcome: "L", score: "0-8" },
+      { date: "Aug 21", opponent: "Grosse Pointe South", outcome: "L", score: "0-8" },
+      { date: "Aug 27", opponent: "Walled Lake Central", outcome: "W", score: "5-3" },
+      { date: "Aug 29", opponent: "St. Clair", outcome: "W", score: "5-3" },
+      { date: "Aug 29", opponent: "Petoskey", outcome: "L", score: "1-7" },
+      { date: "Aug 29", opponent: "Dewitt", outcome: "T", score: "4-4" },
+      { date: "Sep 3", opponent: "West Bloomfield", outcome: "L", score: "0-6" },
+      { date: "Sep 4", opponent: "Jackson Lumen Christi", outcome: "L", score: "2-6", note: "Catholic League" },
+      { date: "Sep 8", opponent: "Ann Arbor Gabriel Richard", outcome: "W", score: "6-2", note: "Catholic League" },
+      { date: "Sep 10", opponent: "Walled Lake Western", outcome: "T", score: "4-4" },
+      { date: "Sep 11", opponent: "Dearborn Divine Child", outcome: "W", score: "5-3", note: "Catholic League" },
+      { date: "Sep 15", opponent: "Riverview Gabriel Richard", outcome: "W", score: "5-3", note: "Catholic League" },
+      { date: "Sep 17", opponent: "Grosse Ile", outcome: "L", score: "2-6" },
+      { date: "Sep 18", opponent: "Warren De La Salle Collegiate", outcome: "L", score: "3-5", note: "Catholic League" },
+      { date: "Sep 30", opponent: "Pontiac Notre Dame Prep", outcome: "W", score: "5-2", note: "Catholic League" },
+      { date: "Oct 8", opponent: "Division 4 Regional (at Grosse Ile)", outcome: "—", note: "Won by Jackson Lumen Christi" },
+      { date: "Oct 17", opponent: "Division 4 State Finals", outcome: "—", note: "All 8 flights qualified · won by Univ. Liggett" },
+    ],
   },
   {
     year: 2024,
