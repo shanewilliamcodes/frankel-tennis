@@ -8,6 +8,14 @@
 
 export type RosterPlayer = { name: string; grade?: number };
 
+// One Frankel-vs-opponent dual result, from Frankel's point of view.
+export type Meeting = {
+  year: number;
+  outcome: "W" | "L" | "T";
+  score?: string;
+  note?: string;
+};
+
 export type Opponent = {
   key: string;
   name: string;
@@ -19,8 +27,24 @@ export type Opponent = {
   coach?: string;
   vsFrankel2025?: string;
   roster2025?: RosterPlayer[];
+  // Frankel's year-by-year head-to-head dual results (newest first), from TennisReporting.
+  headToHead?: Meeting[];
   links?: { label: string; url: string }[];
 };
+
+// Frankel's all-time (recorded) record vs an opponent, e.g. "5-2-1".
+export function seriesRecord(meetings?: Meeting[]): string | null {
+  if (!meetings || meetings.length === 0) return null;
+  let w = 0,
+    l = 0,
+    t = 0;
+  for (const m of meetings) {
+    if (m.outcome === "W") w++;
+    else if (m.outcome === "L") l++;
+    else t++;
+  }
+  return `${w}-${l}-${t}`;
+}
 
 // Public hubs that work for looking up most Michigan opponents.
 // (MHSAA's my.mhsaa.com and TennisReporting require logins; these don't.)
@@ -42,6 +66,16 @@ export const opponents: Opponent[] = [
     record2025: "6-8-1",
     coach: "Rocco Pisto",
     vsFrankel2025: "Frankel won 6-2 (Sept. 8, 2025)",
+    headToHead: [
+      { year: 2025, outcome: "W", score: "6-2" },
+      { year: 2024, outcome: "L", score: "2-6" },
+      { year: 2023, outcome: "W", score: "5-3" },
+      { year: 2022, outcome: "W", score: "7-1" },
+      { year: 2021, outcome: "W", score: "10-0" },
+      { year: 2020, outcome: "W", score: "5-1" },
+      { year: 2019, outcome: "L", score: "2-6" },
+      { year: 2017, outcome: "L", score: "1-6" },
+    ],
     notes:
       "A Catholic League rival the Jaguars see twice a year. Frankel beat them 6-2 in 2025 Catholic League play. In 2024 Gabriel Richard handed Frankel its only dual loss (6-2, with three tiebreaker losses) — then watched the Jaguars avenge two of those in the regional final round on the way to the title.",
     roster2025: [
@@ -77,6 +111,13 @@ export const opponents: Opponent[] = [
     record2025: "19-5-4",
     coach: "Audrey Shade",
     vsFrankel2025: "Grosse Ile won 6-2 (Sept. 17, 2025)",
+    headToHead: [
+      { year: 2025, outcome: "L", score: "2-6" },
+      { year: 2024, outcome: "T", score: "4-4" },
+      { year: 2023, outcome: "W", score: "6-2" },
+      { year: 2022, outcome: "W", score: "6-2" },
+      { year: 2021, outcome: "W", score: "5-4", note: "also tied 4-4 same day" },
+    ],
     notes:
       "Host of the Division 4 regional and a perennial regional contender. Frankel scored 22 points at Grosse Ile to win its first-ever regional title in 2022 (Grosse Ile finished 2nd), and won the regional there again in 2024. They also meet in the 2026 regular season.",
     roster2025: [
@@ -107,6 +148,11 @@ export const opponents: Opponent[] = [
     record2025: "22-3-4",
     coach: "Austin Brinker",
     vsFrankel2025: "Lumen Christi won 6-2 (Sept. 4, 2025)",
+    headToHead: [
+      { year: 2025, outcome: "L", score: "2-6" },
+      { year: 2024, outcome: "T", score: "4-4" },
+      { year: 2023, outcome: "W", score: "7-1", note: "Frankel's Catholic League title year" },
+    ],
     notes:
       "The class of the Catholic League — Lumen Christi went 22-3-4 in 2025, won the Catholic League AA championship, and won the Division 4 Regional that Frankel played in. They beat Frankel 6-2 in league play, and finished 4th at the 2022 regional that Frankel won.",
     roster2025: [
@@ -139,6 +185,16 @@ export const opponents: Opponent[] = [
     record2025: "8-5-0",
     coach: "Ken Germain",
     vsFrankel2025: "Frankel won 5-3 (Sept. 11, 2025)",
+    headToHead: [
+      { year: 2025, outcome: "W", score: "5-3" },
+      { year: 2024, outcome: "W", score: "6-2" },
+      { year: 2023, outcome: "W", score: "7-1" },
+      { year: 2022, outcome: "T", score: "4-4" },
+      { year: 2021, outcome: "W", score: "6-2" },
+      { year: 2020, outcome: "W", score: "6-1" },
+      { year: 2019, outcome: "W", score: "5-2" },
+      { year: 2017, outcome: "W", score: "6-1" },
+    ],
     notes: "A larger Catholic League program. Frankel beat Divine Child 5-3 in 2025; the two played a 4-4 tie in 2022.",
     roster2025: [
       { name: "Asher Englert", grade: 12 },
@@ -169,6 +225,16 @@ export const opponents: Opponent[] = [
     record2025: "9-2-0",
     coach: "Annmarie Michol",
     vsFrankel2025: "De La Salle won 5-3 (Sept. 18, 2025)",
+    headToHead: [
+      { year: 2025, outcome: "L", score: "3-5" },
+      { year: 2024, outcome: "W", score: "5-3" },
+      { year: 2023, outcome: "W", score: "7-1" },
+      { year: 2022, outcome: "T", score: "4-4" },
+      { year: 2021, outcome: "L", score: "1-7" },
+      { year: 2020, outcome: "L", score: "2-6" },
+      { year: 2019, outcome: "L", score: "0-6" },
+      { year: 2017, outcome: "W", score: "4-2" },
+    ],
     notes:
       "A large, traditional Catholic League athletic power — 9-2 in 2025, with their only losses to league champ Lumen Christi and Grosse Pointe South. De La Salle edged Frankel 5-3 in 2025 league play; the schools tied 4-4 in 2022.",
     roster2025: [
@@ -187,6 +253,13 @@ export const opponents: Opponent[] = [
     record2025: "8-6-4",
     coach: "Leigh Ann Grubbs",
     vsFrankel2025: "Frankel won 5-2 (Sept. 30, 2025)",
+    headToHead: [
+      { year: 2025, outcome: "W", score: "5-2" },
+      { year: 2024, outcome: "T", score: "4-4" },
+      { year: 2022, outcome: "W", score: "6-2" },
+      { year: 2020, outcome: "L", note: "lost to them in the district final" },
+      { year: 2019, outcome: "W", score: "6-3" },
+    ],
     notes: "Catholic League and Division 4 opponent; Frankel beat them 5-2 in 2025, and they finished 6th at the 2022 regional that Frankel won.",
     roster2025: [
       { name: "Jacob Evans", grade: 12 },
@@ -217,6 +290,13 @@ export const opponents: Opponent[] = [
     record2025: "9-3-1",
     coach: "Chris Ludwig",
     vsFrankel2025: "West Bloomfield won 6-0 (Sept. 3, 2025)",
+    headToHead: [
+      { year: 2025, outcome: "L", score: "0-6" },
+      { year: 2024, outcome: "W", score: "5-3" },
+      { year: 2023, outcome: "W", score: "5-3" },
+      { year: 2020, outcome: "L", score: "1-7" },
+      { year: 2019, outcome: "L", score: "1-7" },
+    ],
     notes:
       "The Jaguars' larger Division 1 neighbor and a frequent regular-season measuring stick — 9-3-1 in 2025. Frankel beat the Lakers 5-3 in 2023. Coach Larry Stark led West Bloomfield's boys tennis team for eight years before coming to Frankel.",
     roster2025: [
@@ -246,13 +326,26 @@ export const opponents: Opponent[] = [
     name: "Walled Lake Northern",
     city: "Commerce Township, MI",
     league: "Division 1",
-    notes: "Hosts Frankel for an early-season tri-match and a second dual in late August 2026.",
+    notes: "A Division 1 program Frankel meets early most years. Hosts the Jaguars for a tri-match and a second dual in late August 2026.",
+    headToHead: [
+      { year: 2023, outcome: "T", score: "4-4" },
+      { year: 2021, outcome: "L", score: "1-7" },
+      { year: 2019, outcome: "L", score: "2-5" },
+    ],
   },
   {
     key: "walled-lake-central",
     name: "Walled Lake Central",
     city: "Commerce Township, MI",
     league: "Division 1",
+    notes: "A Division 1 early-season regular. The series has been back-and-forth.",
+    headToHead: [
+      { year: 2024, outcome: "W", score: "6-2" },
+      { year: 2023, outcome: "L", score: "3-5" },
+      { year: 2020, outcome: "T", score: "4-4" },
+      { year: 2019, outcome: "L", score: "1-6" },
+      { year: 2017, outcome: "W", score: "5-2" },
+    ],
   },
   {
     key: "livonia-franklin",
@@ -260,32 +353,44 @@ export const opponents: Opponent[] = [
     city: "Livonia, MI",
     league: "Division 1",
     notes: "Shares an early-season tri-match with Frankel and Walled Lake Northern.",
+    headToHead: [{ year: 2021, outcome: "W", score: "8-2" }],
   },
   {
     key: "st-clair",
     name: "St. Clair",
     city: "St. Clair, MI",
     league: "Division 2",
-    notes: "Tri-match opponent to open the 2026 season.",
+    notes: "Tri-match opponent to open the 2026 season; Frankel beat them 5-3 in their first meeting in 2025.",
+    headToHead: [{ year: 2025, outcome: "W", score: "5-3" }],
   },
   {
     key: "north-farmington",
     name: "North Farmington",
     city: "Farmington Hills, MI",
     league: "Division 1",
+    notes: "A larger Division 1 program; the 2019 meeting went down to the wire (a 5-6 loss).",
+    headToHead: [{ year: 2019, outcome: "L", score: "5-6" }],
   },
   {
     key: "farmington",
     name: "Farmington",
     city: "Farmington, MI",
     league: "Division 1",
+    notes: "A Division 1 opponent from Frankel's backyard.",
+    headToHead: [{ year: 2020, outcome: "L", score: "0-7" }],
   },
   {
     key: "hartland",
     name: "Hartland",
     city: "Hartland, MI",
     league: "Division 1",
-    notes: "A larger program Frankel schedules to sharpen up before the postseason.",
+    notes: "A larger program Frankel schedules to sharpen up before the postseason. The Jaguars have taken the last three meetings.",
+    headToHead: [
+      { year: 2024, outcome: "W", score: "6-2" },
+      { year: 2023, outcome: "W", score: "7-1" },
+      { year: 2022, outcome: "W", score: "5-3" },
+      { year: 2021, outcome: "L", score: "3-6" },
+    ],
   },
 ];
 

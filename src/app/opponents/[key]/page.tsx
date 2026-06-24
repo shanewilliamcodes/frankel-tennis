@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { opponents, lookupLinks } from "@/data/opponents";
+import { opponents, lookupLinks, seriesRecord } from "@/data/opponents";
 
 export function generateStaticParams() {
   return opponents.map((o) => ({ key: o.key }));
@@ -74,6 +74,61 @@ export default async function OpponentPage({
 
           {opp.notes && (
             <p className="mt-8 text-lg leading-relaxed text-[#25303f]">{opp.notes}</p>
+          )}
+
+          {opp.headToHead && opp.headToHead.length > 0 && (
+            <div className="mt-8">
+              <div className="flex flex-wrap items-baseline justify-between gap-2">
+                <h2 className="text-xl font-extrabold text-[var(--navy)]">Head-to-head vs. Frankel</h2>
+                {seriesRecord(opp.headToHead) && (
+                  <p className="text-sm font-semibold text-[var(--muted)]">
+                    Frankel is{" "}
+                    <span className="text-[var(--navy)]">{seriesRecord(opp.headToHead)}</span> in recorded meetings
+                  </p>
+                )}
+              </div>
+              <p className="mt-1 text-sm text-[var(--muted)]">
+                Year-by-year dual results, from Frankel&apos;s side (W = Frankel win). Sourced from TennisReporting.
+              </p>
+              <div className="mt-4 overflow-x-auto rounded-xl border border-[var(--line)] bg-white">
+                <table className="w-full text-sm border-collapse">
+                  <thead>
+                    <tr className="text-left text-[var(--muted)] border-b border-[var(--line)]">
+                      <th className="py-2.5 px-4 font-semibold">Year</th>
+                      <th className="py-2.5 px-4 font-semibold">Result</th>
+                      <th className="py-2.5 px-4 font-semibold">Score</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {opp.headToHead.map((m, i) => {
+                      const tone =
+                        m.outcome === "W"
+                          ? "bg-green-100 text-green-800"
+                          : m.outcome === "L"
+                          ? "bg-red-100 text-red-700"
+                          : "bg-amber-100 text-amber-800";
+                      const label = m.outcome === "W" ? "Frankel win" : m.outcome === "L" ? "Frankel loss" : "Tie";
+                      return (
+                        <tr key={i} className="border-b border-[var(--line)] last:border-0">
+                          <td className="py-2.5 px-4 font-semibold text-[var(--navy)] whitespace-nowrap">{m.year}</td>
+                          <td className="py-2.5 px-4">
+                            <span
+                              className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-xs font-bold ${tone}`}
+                            >
+                              {m.outcome} <span className="font-medium">· {label}</span>
+                            </span>
+                          </td>
+                          <td className="py-2.5 px-4 text-[#25303f]">
+                            {m.score ?? "—"}
+                            {m.note && <span className="text-[var(--muted)]"> · {m.note}</span>}
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+            </div>
           )}
 
           {opp.roster2025 && opp.roster2025.length > 0 && (
