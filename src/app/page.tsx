@@ -173,6 +173,31 @@ export default function Home() {
           </Link>
         </div>
       </section>
+
+      {/* ===== Instagram CTA ===== */}
+      <section className="section">
+        <div className="container-page">
+          <a
+            href={team.instagram}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="card card-hover p-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left"
+          >
+            <div>
+              <p className="eyebrow">Follow the Jaguars</p>
+              <h2 className="mt-1 text-2xl font-extrabold text-[var(--navy)]">
+                See more on Instagram
+              </h2>
+              <p className="mt-1 text-[var(--muted)]">
+                Team photos, match-day moments and more at {team.instagramHandle}.
+              </p>
+            </div>
+            <span className="inline-flex items-center rounded-full bg-[var(--navy)] text-white px-6 py-3 text-sm font-bold whitespace-nowrap">
+              📷 {team.instagramHandle} ↗
+            </span>
+          </a>
+        </div>
+      </section>
     </>
   );
 }

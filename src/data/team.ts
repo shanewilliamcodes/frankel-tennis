@@ -18,6 +18,9 @@ export const team = {
   },
   schoolWebsite: "https://frankelja.org/",
   athleticsWebsite: "https://www.frankelathletics.com/",
+  instagram: "https://www.instagram.com/fjatennis/",
+  instagramHandle: "@fjatennis",
+  homeCourts: "Drake Sports Park",
   // A short tagline used in the hero and page headers.
   tagline: "Small school. Mighty program.",
   // One-paragraph elevator pitch used on the home page.

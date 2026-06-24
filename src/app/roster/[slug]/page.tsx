@@ -76,10 +76,14 @@ export default async function PlayerPage({
             </div>
           )}
 
-          <div className="mt-10 rounded-xl bg-slate-50 border border-[var(--line)] p-5 text-sm text-[var(--muted)]">
-            Want more here — a photo, hometown, year-by-year records, a favorite shot? Send the details and
-            this profile fills out.
-          </div>
+          {!player.bio && (!player.highlights || player.highlights.length === 0) && (
+            <div className="rounded-xl bg-slate-50 border border-[var(--line)] p-6 text-[var(--muted)]">
+              <p className="font-semibold text-[var(--navy)]">Profile coming soon</p>
+              <p className="mt-1 text-sm">
+                Stats and highlights for {player.name} will appear here as the season gets underway.
+              </p>
+            </div>
+          )}
         </div>
       </section>
     </>

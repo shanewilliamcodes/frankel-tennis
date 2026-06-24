@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { roster, rosterSeason, rosterIsProvisional } from "@/data/roster";
+import { roster, rosterSeason, rosterNote } from "@/data/roster";
 import { PageHeader, Badge, NeedsUpdateBanner } from "@/components/ui";
 
 export const metadata: Metadata = {
@@ -27,13 +27,7 @@ export default function RosterPage() {
       />
       <section className="section">
         <div className="container-page space-y-6">
-          {rosterIsProvisional && (
-            <NeedsUpdateBanner>
-              This roster shows the <strong>most recent published lineup</strong> as a starting point. Send the
-              current season&apos;s roster (names, grades, flights) and I&apos;ll update it — each player gets their
-              own profile page automatically.
-            </NeedsUpdateBanner>
-          )}
+          {rosterNote && <NeedsUpdateBanner>{rosterNote}</NeedsUpdateBanner>}
 
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {roster.map((p) => (

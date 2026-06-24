@@ -1,8 +1,7 @@
 // =====================================================================
-// ROSTER
-// This is pre-filled with the most recent KNOWN lineup (2024) as a
-// starting point. Replace `players` with the current season's roster
-// when it's set — each player gets a detail page at /roster/<slug>.
+// ROSTER — current squad.
+// Add `flight`, `grade`, `hometown`, `bio`, `highlights` as you get them.
+// Each player automatically gets a profile page at /roster/<slug>.
 // =====================================================================
 
 export type Player = {
@@ -17,106 +16,56 @@ export type Player = {
   highlights?: string[];
 };
 
-// Set to the current/most-recent season this roster represents.
-export const rosterSeason = "2024 (most recent published lineup)";
+// The season this roster represents.
+export const rosterSeason = "2026 Season";
 
-// When true, a banner notes the roster is awaiting the current season.
-export const rosterIsProvisional = true;
+// Set to false now that this is the real, coach-provided roster.
+export const rosterIsProvisional = false;
+
+// Note shown under the roster while the lineup (flight order) is still being set.
+export const rosterNote =
+  "Flight assignments (singles/doubles order) are set during the preseason — they'll be added here once the lineup is finalized.";
 
 export const roster: Player[] = [
   {
     slug: "brandon-witt",
     name: "Brandon Witt",
-    grade: "Junior",
+    grade: "Senior",
     flight: "1 Singles",
     isCaptain: true,
-    yearsOnTeam: 3,
-    bio: "Projected No. 1 singles player and a team captain. Brandon didn't play competitive tennis before Frankel — he came from Hillel Day School, where he played basketball — and has become one of the program's leaders.",
-    highlights: [
-      "2024: 15-2 at No. 3 singles, Regional Champion, state quarterfinalist",
-      "2023: 14-3 at No. 2 doubles as a freshman, reached state semifinals",
-    ],
-  },
-  {
-    slug: "hayden-dean",
-    name: "Hayden Dean",
-    grade: "Senior",
-    flight: "2 Singles",
     yearsOnTeam: 4,
+    bio: "A senior captain and the team's projected No. 1 singles player. Brandon didn't play competitive tennis before Frankel — he came from Hillel Day School, where he played basketball — and has grown into one of the program's leaders and best players.",
     highlights: [
-      "2024: 13-3 at No. 2 singles, Regional Champion (won a four-hour regional final)",
-      "Four-year varsity contributor across singles and doubles",
+      "2024: 15-2 at No. 3 singles, Regional Champion, advanced to the state quarterfinals",
+      "2023: 14-3 at No. 2 doubles as a freshman, reached the state semifinals",
+      "\"Brandon will be our No. 1 singles player and a team captain. He's a leader.\" — Coach Larry Stark",
     ],
-  },
-  {
-    slug: "ethan-schwartz",
-    name: "Ethan Schwartz",
-    grade: "Senior",
-    flight: "1 Singles",
-    yearsOnTeam: 3,
-    highlights: ["2024: No. 1 singles", "2023: No. 1 singles on the best-ever state team"],
   },
   {
     slug: "shyah-lakind",
     name: "Shyah LaKind",
-    flight: "4 Singles",
-    highlights: ["2024: 11-5 at No. 4 singles, reached the regional final"],
-  },
-  {
-    slug: "robbie-feldman",
-    name: "Robbie Feldman",
-    flight: "1 Doubles",
-    highlights: [
-      "2024: 12-5 at No. 1 doubles, reached the regional final",
-      "2023: state semifinalist at No. 2 doubles",
-    ],
-  },
-  {
-    slug: "eli-rosenzweig",
-    name: "Eli Rosenzweig",
-    flight: "1 Doubles",
-    highlights: ["2024: 12-5 at No. 1 doubles, reached the regional final"],
-  },
-  {
-    slug: "louie-kowalsky",
-    name: "Louie Kowalsky",
-    flight: "2 Doubles",
-    highlights: [
-      "2024: 16-1 at No. 2 doubles, Regional Champion",
-      "Undefeated in the regular season two years running (12-0 in 2024, 11-0 in 2023)",
-    ],
-  },
-  {
-    slug: "austin-squarcia",
-    name: "Austin Squarcia",
-    flight: "2 Doubles",
-    highlights: [
-      "2024: 16-1 at No. 2 doubles, Regional Champion",
-      "Undefeated in the regular season two years running",
-    ],
-  },
-  {
-    slug: "aaron-schuchman",
-    name: "Aaron Schuchman",
-    flight: "3 Doubles",
-    highlights: ["2024: No. 3 doubles"],
-  },
-  {
-    slug: "aidan-squarcia",
-    name: "Aidan Squarcia",
-    flight: "3 Doubles",
-    highlights: ["2024: No. 3 doubles"],
+    yearsOnTeam: 3,
+    highlights: ["2024: 11-5 at No. 4 singles, advanced to the regional championship match"],
   },
   {
     slug: "drew-edelstein",
     name: "Drew Edelstein",
-    flight: "4 Doubles",
-    highlights: ["2024: No. 4 doubles"],
+    highlights: ["2024: played No. 4 doubles on the Regional Champion team"],
   },
   {
     slug: "moses-schuchman",
     name: "Moses Schuchman",
-    flight: "4 Doubles",
-    highlights: ["2024: No. 4 doubles"],
+    highlights: ["2024: played No. 4 doubles on the Regional Champion team"],
   },
+  { slug: "avery-schwartz", name: "Avery Schwartz" },
+  { slug: "benji-brown", name: "Benji Brown" },
+  { slug: "effie-shanbaum", name: "Effie Shanbaum" },
+  { slug: "eli-katz", name: "Eli Katz" },
+  { slug: "emmett-glass", name: "Emmett Glass" },
+  { slug: "ethan-bocknek", name: "Ethan Bocknek" },
+  { slug: "luca-turner", name: "Luca Turner" },
+  { slug: "noah-tepper", name: "Noah Tepper" },
+  { slug: "sam-prostak", name: "Sam Prostak" },
+  { slug: "sammy-shanbaum", name: "Sammy Shanbaum" },
+  { slug: "will-goodman", name: "Will Goodman" },
 ];

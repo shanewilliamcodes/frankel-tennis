@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { schedule, scheduleIsPlaceholder, scheduleSeasonLabel } from "@/data/schedule";
+import { schedule, scheduleIsPlaceholder, scheduleSeasonLabel, scheduleNote } from "@/data/schedule";
 import { PageHeader, Badge, NeedsUpdateBanner } from "@/components/ui";
 
 export const metadata: Metadata = {
@@ -36,15 +36,16 @@ export default function SchedulePage() {
       />
       <section className="section">
         <div className="container-page space-y-6">
-          {scheduleIsPlaceholder && (
+          {scheduleIsPlaceholder ? (
             <NeedsUpdateBanner>
-              These are <strong>sample entries</strong> to show how the schedule looks. Send the official
-              fall schedule (or point me to it on{" "}
-              <a className="underline" href="https://www.frankelathletics.com/" target="_blank" rel="noopener noreferrer">
-                frankelathletics.com
-              </a>
-              ) and I&apos;ll drop in the real dates, opponents and results.
+              These are sample entries — replace with the official schedule.
             </NeedsUpdateBanner>
+          ) : (
+            scheduleNote && (
+              <div className="rounded-xl bg-[var(--sky)] border border-[var(--line)] px-4 py-3 text-sm text-[var(--navy)]">
+                {scheduleNote}
+              </div>
+            )
           )}
 
           <ol className="space-y-3">
