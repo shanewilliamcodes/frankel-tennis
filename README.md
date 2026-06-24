@@ -1,36 +1,42 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Frankel Jaguars Boys Tennis
 
-## Getting Started
+Website for the **Frankel Jewish Academy** (West Bloomfield, MI) boys tennis team — the Jaguars.
+Built with **Next.js + TypeScript + Tailwind CSS**, deployed on **Vercel**.
 
-First, run the development server:
+## How to update content (no coding required for most edits)
+
+All content lives in plain, well-commented files under **`src/data/`**. Edit a file, save, commit, and the
+live site updates automatically.
+
+| What you want to change | Edit this file |
+| --- | --- |
+| Schedule, practices, key dates | `src/data/schedule.ts` |
+| Roster & player profiles | `src/data/roster.ts` (each player gets a page at `/roster/<slug>`) |
+| Season records / history / lineups | `src/data/seasons.ts` |
+| News & press links | `src/data/news.ts` |
+| Announcements | `src/data/extras.ts` (`announcements`) |
+| Awards, championships, rules | `src/data/extras.ts` |
+| Opponent scouting pages | `src/data/opponents.ts` |
+| Coach bios | `src/data/coaches.ts` |
+| School info, address, stats | `src/data/team.ts` |
+| Nav menu links | `src/data/nav.ts` |
+
+### Things currently marked "to update"
+- **Schedule** (`scheduleIsPlaceholder = true`) — sample entries; replace with the real fall schedule.
+- **Roster** (`rosterIsProvisional = true`) — shows the most recent published (2024) lineup as a starting point.
+- **2025 season** (`needsUpdate: true` in `seasons.ts`) — add final fall 2025 results.
+
+Flip the `*IsPlaceholder` / `needsUpdate` flags to `false` (or remove them) once real data is in, and the
+on-page "update" banners disappear.
+
+## Local development
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev      # http://localhost:3000
+npm run build    # production build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Deployment
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Connected to Vercel — every push to `main` on GitHub auto-deploys to production.
