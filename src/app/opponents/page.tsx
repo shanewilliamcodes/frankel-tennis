@@ -15,7 +15,7 @@ export default function OpponentsPage() {
       <PageHeader
         eyebrow="Scouting report"
         title="Opponents"
-        subtitle="The schools we face — each scouting page has Frankel's year-by-year head-to-head record against that team, plus (for the schools we know best) their 2025 record, head coach and full roster, all pulled from TennisReporting."
+        subtitle="The schools we face — each scouting page has Frankel's year-by-year head-to-head record against that team, plus their 2025 team record, head coach and full roster, all pulled from TennisReporting."
       />
       <section className="section">
         <div className="container-page">
