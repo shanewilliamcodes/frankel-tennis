@@ -97,6 +97,7 @@ function stripSortKey(event: ScheduleEvent & { _sort: number }): ScheduleEvent {
     opponent: event.opponent,
     opponentKey: event.opponentKey,
     location: event.location,
+    address: event.address,
     home: event.home,
     time: event.time,
     result: event.result,
@@ -139,6 +140,8 @@ function toScheduleEvent(event: IcsEvent): (ScheduleEvent & { _sort: number }) |
   const title = cleanTitle(event.summary);
   const type = inferEventType(title, event.description);
   const opponent = findOpponent(title);
+  const location = getLocation(event);
+  const note = event.description ? cleanDescription(event.description) : undefined;
   const time = event.dtstart.time
     ? formatTimeRange(event.dtstart.time, event.dtend?.date === event.dtstart.date ? event.dtend?.time : undefined)
     : undefined;
@@ -149,9 +152,10 @@ function toScheduleEvent(event: IcsEvent): (ScheduleEvent & { _sort: number }) |
     title,
     opponent: opponent?.label,
     opponentKey: opponent?.key,
-    location: event.location ? cleanLocation(event.location) : undefined,
+    location: location.name,
+    address: location.address,
     time,
-    note: event.description ? cleanDescription(event.description) : undefined,
+    note,
     _sort: event.dtstart.sort,
   };
 }
@@ -250,6 +254,30 @@ function cleanTitle(title: string) {
 
 function cleanLocation(location: string) {
   return location.replace(/\s+/g, " ").trim();
+}
+
+function getLocation(event: IcsEvent) {
+  const rawLocation = event.location ? cleanLocation(event.location) : undefined;
+  const describedLocation = event.description ? extractDescribedLocation(event.description) : undefined;
+
+  if (describedLocation && rawLocation && rawLocation !== describedLocation) {
+    return { name: describedLocation, address: looksLikeAddress(rawLocation) ? rawLocation : undefined };
+  }
+
+  if (rawLocation) {
+    return { name: rawLocation, address: undefined };
+  }
+
+  return { name: describedLocation, address: undefined };
+}
+
+function extractDescribedLocation(description: string) {
+  const match = /Location:\s*([^(]+?)(?:\s*\(|$)/i.exec(description);
+  return match ? cleanLocation(match[1]) : undefined;
+}
+
+function looksLikeAddress(value: string) {
+  return /^\d/.test(value) || /\b(MI|Michigan)\b/i.test(value) || /\b(Rd|Road|St|Street|Ave|Drive|Dr|Blvd|Court|Ct)\b/i.test(value);
 }
 
 function cleanDescription(description: string) {

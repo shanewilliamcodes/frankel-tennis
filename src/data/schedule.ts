@@ -19,6 +19,7 @@ export type ScheduleEvent = {
   opponent?: string;
   opponentKey?: string;
   location?: string;
+  address?: string;
   home?: boolean;
   time?: string;
   result?: string; // e.g. "W 5-3" once played

@@ -50,8 +50,8 @@ const LOCATION_QUERIES: Record<string, string> = {
   "Walled Lake Northern HS": "Walled Lake Northern High School Commerce Township MI",
 };
 
-function mapsUrl(location: string) {
-  const query = LOCATION_QUERIES[location] ?? `${location} Michigan`;
+function mapsUrl(location: string, address?: string) {
+  const query = address ? `${location} ${address}` : LOCATION_QUERIES[location] ?? `${location} Michigan`;
   return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`;
 }
 
@@ -121,17 +121,20 @@ export function ScheduleList({
                     )}
                   </h3>
                   {e.location && (
-                    <p className="text-sm text-[var(--muted)]">
-                      Location:{" "}
-                      <a
-                        href={mapsUrl(e.location)}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="font-semibold text-[var(--royal)] underline-offset-4 hover:underline"
-                      >
-                        {e.location}
-                      </a>
-                    </p>
+                    <div className="text-sm text-[var(--muted)]">
+                      <p>
+                        Location:{" "}
+                        <a
+                          href={mapsUrl(e.location, e.address)}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="font-semibold text-[var(--royal)] underline-offset-4 hover:underline"
+                        >
+                          {e.location}
+                        </a>
+                      </p>
+                      {e.address && <p className="mt-0.5 text-xs text-[var(--muted)]">{e.address}</p>}
+                    </div>
                   )}
                   {e.note && <p className="mt-1 text-sm text-[var(--muted)]">{e.note}</p>}
                 </div>
