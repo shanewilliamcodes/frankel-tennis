@@ -2,6 +2,7 @@ import { schedule as fallbackSchedule, type EventType, type ScheduleEvent } from
 import { opponents } from "@/data/opponents";
 
 const FEED_REVALIDATE_SECONDS = 15 * 60;
+const TEAMSNAP_TEAM_NAME = "FJA Boys Tennis";
 
 type IcsEvent = {
   summary?: string;
@@ -81,6 +82,7 @@ export function parseTeamSnapIcs(ics: string): ScheduleEvent[] {
   return getIcsEventBlocks(ics)
     .map(parseIcsBlock)
     .filter((event) => event.status?.toUpperCase() !== "CANCELLED")
+    .filter(isBoysTennisEvent)
     .map(toScheduleEvent)
     .filter((event): event is ScheduleEvent & { _sort: number } => Boolean(event))
     .sort((a, b) => a._sort - b._sort)
@@ -207,6 +209,11 @@ function formatTimeRange(start: string, end?: string) {
 
 function inferEventType(title: string, description?: string): EventType {
   const haystack = `${title} ${description ?? ""}`.toLowerCase();
+  const normalizedTitle = title.trim().toLowerCase();
+
+  if (haystack.includes("inter-team") || haystack.includes("inter- team") || haystack.includes("inter-squad")) {
+    return "Practice";
+  }
 
   if (haystack.includes("regional") || haystack.includes("state final") || haystack.includes("tournament") || haystack.includes("invite")) {
     return "Tournament";
@@ -214,7 +221,15 @@ function inferEventType(title: string, description?: string): EventType {
 
   if (haystack.includes("challenge")) return "Challenge Match";
   if (haystack.includes("practice")) return "Practice";
-  if (haystack.includes("match") || haystack.includes(" vs ") || haystack.includes(" at ")) return "Match";
+  if (
+    haystack.includes("match") ||
+    normalizedTitle.startsWith("vs ") ||
+    normalizedTitle.startsWith("at ") ||
+    normalizedTitle.includes(" vs ") ||
+    normalizedTitle.includes(" at ")
+  ) {
+    return "Match";
+  }
 
   return "Key Date";
 }
@@ -227,7 +242,10 @@ function findOpponent(title: string) {
 }
 
 function cleanTitle(title: string) {
-  return title.replace(/\s+/g, " ").trim();
+  return title
+    .replace(new RegExp(`^${TEAMSNAP_TEAM_NAME}\\s*[-:–—]?\\s*`, "i"), "")
+    .replace(/\s+/g, " ")
+    .trim();
 }
 
 function cleanLocation(location: string) {
@@ -235,12 +253,20 @@ function cleanLocation(location: string) {
 }
 
 function cleanDescription(description: string) {
+  const arrival = /Arrival Time:\s*([0-9]{1,2}:[0-9]{2}\s*[AP]M)/i.exec(description);
+  if (arrival) return `Arrive ${arrival[1].replace(/\s+/g, " ")}.`;
+
   const cleaned = description
     .replace(/https?:\/\/\S+/g, "")
+    .replace(/Location:\s*/gi, "")
     .replace(/\s+/g, " ")
     .trim();
 
   return cleaned.length > 180 ? `${cleaned.slice(0, 177).trim()}...` : cleaned || undefined;
+}
+
+function isBoysTennisEvent(event: IcsEvent) {
+  return event.summary?.toLowerCase().includes(TEAMSNAP_TEAM_NAME.toLowerCase()) ?? false;
 }
 
 function decodeIcsText(value: string) {

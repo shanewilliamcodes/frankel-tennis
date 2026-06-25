@@ -221,6 +221,7 @@ export const opponents: Opponent[] = [
   {
     key: "de-la-salle",
     name: "Warren De La Salle Collegiate",
+    aliases: ["De La Salle"],
     city: "Warren, MI",
     league: "Catholic League AA Division",
     record2025: "9-2-0",
