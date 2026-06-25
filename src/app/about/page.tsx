@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { team } from "@/data/team";
 import { coaches } from "@/data/coaches";
-import { PageHeader } from "@/components/ui";
+import { PageHeader, SectionHeading } from "@/components/ui";
 
 export const metadata: Metadata = {
   title: "About",
@@ -20,36 +20,53 @@ export default function AboutPage() {
       />
 
       <section className="section">
-        <div className="container-page max-w-3xl prose-page">
-          <p>
-            {team.schoolName} is a small Jewish high school in {team.address.city}, Michigan, with roughly 145
-            students. Sports are central to the school&apos;s culture — about 70% of students play at least one —
-            and few programs capture the school&apos;s spirit like boys tennis.
-          </p>
-          <p>
-            Before head coach Larry Stark arrived, Frankel had never reached the state tournament in boys
-            tennis. Since then the Jaguars have qualified for the MHSAA Division 4 State Finals 11 times in 13
-            years, won two regional championships (2022, 2024) and a Catholic League title (2023), and posted a
-            best-ever 7th-place state finish in 2023.
-          </p>
-          <p>
-            Remarkably, the team does it while honoring Shabbat and the Jewish holidays — which often means less
-            practice and match time than opponents get. The MHSAA makes scheduling accommodations each year so
-            the Jaguars can compete while keeping their commitments.
-          </p>
-          <p>
-            What makes it work is a clear identity: a small roster, a demanding schedule, careful lineup
-            development and a belief that preparation can close the gap on size and depth.
-          </p>
+        <div className="container-page">
+          <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_340px]">
+            <div className="prose-page max-w-3xl">
+              <p>
+                {team.schoolName} is a small Jewish high school in {team.address.city}, Michigan, with roughly
+                145 students. Sports are central to the school&apos;s culture — about 70% of students play at least
+                one — and few programs capture the school&apos;s spirit like boys tennis.
+              </p>
+              <p>
+                Before head coach Larry Stark arrived, Frankel had never reached the state tournament in boys
+                tennis. Since then the Jaguars have qualified for the MHSAA Division 4 State Finals 11 times in
+                13 years, won two regional championships (2022, 2024) and a Catholic League title (2023), and
+                posted a best-ever 7th-place state finish in 2023.
+              </p>
+              <p>
+                Remarkably, the team does it while honoring Shabbat and the Jewish holidays — which often means
+                less practice and match time than opponents get. The MHSAA makes scheduling accommodations each
+                year so the Jaguars can compete while keeping their commitments.
+              </p>
+              <p>
+                What makes it work is a clear identity: a small roster, a demanding schedule, careful lineup
+                development and a belief that preparation can close the gap on size and depth.
+              </p>
+            </div>
+
+            <aside className="card p-6 self-start">
+              <p className="eyebrow">Program profile</p>
+              <dl className="mt-5 space-y-4 text-sm">
+                <Fact label="School" value={team.schoolName} />
+                <Fact label="Home courts" value={team.homeCourts} />
+                <Fact label="Division" value={team.division} />
+                <Fact label="League" value={team.league} />
+              </dl>
+            </aside>
+          </div>
         </div>
       </section>
 
-      <section className="section bg-slate-50 border-y border-[var(--line)]">
+      <section className="section bg-white border-y border-[var(--line)]">
         <div className="container-page">
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-[var(--navy)]">Coaching Staff</h2>
+          <SectionHeading eyebrow="Coaching staff" title="Larry & Monica Stark">
+            Two certified tennis professionals, one program identity: disciplined preparation, steady player
+            development and a team culture built to compete against deeper schools.
+          </SectionHeading>
           <div className="mt-8 space-y-10">
             {coaches.map((c) => (
-              <article key={c.name} className="grid md:grid-cols-3 gap-6">
+              <article key={c.name} className="card p-5 sm:p-6 grid md:grid-cols-3 gap-6">
                 <div>
                   <h3 className="text-xl font-extrabold text-[var(--navy)]">{c.name}</h3>
                   <p className="text-[var(--royal)] font-bold">{c.role}</p>
@@ -79,7 +96,7 @@ export default function AboutPage() {
                     <ul className="mt-4 space-y-2 text-sm">
                       {c.honors.map((h, i) => (
                         <li key={i} className="flex gap-2 text-[var(--muted)]">
-                          <span aria-hidden className="text-[var(--gold)]">★</span>
+                          <span aria-hidden className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--gold)]" />
                           <span>{h}</span>
                         </li>
                       ))}
@@ -87,6 +104,18 @@ export default function AboutPage() {
                   )}
                 </div>
                 <div className="md:col-span-2">
+                  {c.credentials && (
+                    <div className="mb-6 grid gap-2 sm:grid-cols-2">
+                      {c.credentials.map((credential) => (
+                        <div
+                          key={credential}
+                          className="rounded-lg border border-[var(--line)] bg-slate-50 px-3 py-2 text-sm font-semibold text-[#25303f]"
+                        >
+                          {credential}
+                        </div>
+                      ))}
+                    </div>
+                  )}
                   <div className="prose-page">
                     {c.bio.map((para, i) => (
                       <p key={i}>{para}</p>
@@ -99,5 +128,14 @@ export default function AboutPage() {
         </div>
       </section>
     </>
+  );
+}
+
+function Fact({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="border-b border-[var(--line)] pb-3 last:border-0 last:pb-0">
+      <dt className="stat-label">{label}</dt>
+      <dd className="mt-1 font-extrabold text-[var(--navy)]">{value}</dd>
+    </div>
   );
 }
