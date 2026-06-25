@@ -45,8 +45,9 @@ export const roster: Player[] = [
     slug: "shyah-lakind",
     name: "Shyah LaKind",
     grade: "Senior",
+    isCaptain: true,
     yearsOnTeam: 3,
-    bio: "A senior who has climbed the lineup every year and posted the team's best singles record in 2025. Steady and competitive, Shyah has been one of the program's most dependable point-winners deep in the lineup.",
+    bio: "A senior captain who has climbed the lineup every year and posted the team's best singles record in 2025. Steady and competitive, Shyah has been one of the program's most dependable point-winners deep in the lineup.",
     highlights: [
       "2025: 12-7 at No. 4 singles — the team's best singles record; won 3 matches at the Regional and a match at the State Finals",
       "2024: 11-5 at No. 4 singles, advanced to the regional championship match",

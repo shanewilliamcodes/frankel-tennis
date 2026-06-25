@@ -34,6 +34,27 @@ const FILTERS: { key: FilterKey; label: string; test: (t: EventType) => boolean 
   { key: "practices", label: "Practices", test: (t) => t === "Practice" },
 ];
 
+const LOCATION_QUERIES: Record<string, string> = {
+  "De La Salle": "De La Salle Collegiate High School Warren MI",
+  "Drake Sports Park": "Drake Sports Park West Bloomfield MI",
+  "Farmington HS": "Farmington High School Farmington MI",
+  "Grosse Ile HS": "Grosse Ile High School Grosse Ile MI",
+  "Hartland HS": "Hartland High School Hartland MI",
+  "Huron Valley Tennis Club": "Huron Valley Tennis Club Ann Arbor MI",
+  "Midland Tennis Center": "Greater Midland Tennis Center Midland MI",
+  "North Farmington HS": "North Farmington High School Farmington Hills MI",
+  "Notre Dame Prep": "Notre Dame Preparatory School Pontiac MI",
+  "Pulaski Park": "Pulaski Park Ann Arbor MI",
+  "St. Clair HS": "St Clair High School Saint Clair MI",
+  "Walled Lake Central": "Walled Lake Central High School Walled Lake MI",
+  "Walled Lake Northern HS": "Walled Lake Northern High School Commerce Township MI",
+};
+
+function mapsUrl(location: string) {
+  const query = LOCATION_QUERIES[location] ?? `${location} Michigan`;
+  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`;
+}
+
 export function ScheduleList({ events }: { events: ScheduleEvent[] }) {
   const [filter, setFilter] = useState<FilterKey>("all");
   const active = FILTERS.find((f) => f.key === filter)!;
@@ -87,7 +108,19 @@ export function ScheduleList({ events }: { events: ScheduleEvent[] }) {
                       e.title
                     )}
                   </h3>
-                  {e.location && <p className="text-sm text-[var(--muted)]">Location: {e.location}</p>}
+                  {e.location && (
+                    <p className="text-sm text-[var(--muted)]">
+                      Location:{" "}
+                      <a
+                        href={mapsUrl(e.location)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="font-semibold text-[var(--royal)] underline-offset-4 hover:underline"
+                      >
+                        {e.location}
+                      </a>
+                    </p>
+                  )}
                   {e.note && <p className="mt-1 text-sm text-[var(--muted)]">{e.note}</p>}
                 </div>
               </div>
