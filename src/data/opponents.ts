@@ -19,6 +19,7 @@ export type Meeting = {
 export type Opponent = {
   key: string;
   name: string;
+  aliases?: string[];
   city?: string;
   league?: string;
   notes?: string;

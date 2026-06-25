@@ -3,17 +3,22 @@ import Image from "next/image";
 import { team, programStats } from "@/data/team";
 import { heroPhoto } from "@/data/photos";
 import { seasons } from "@/data/seasons";
-import { schedule } from "@/data/schedule";
+import type { ScheduleEvent } from "@/data/schedule";
 import { news } from "@/data/news";
 import { announcements } from "@/data/extras";
 import { Badge, SectionHeading } from "@/components/ui";
 import { Logo } from "@/components/Logo";
+import { getScheduleData } from "@/lib/teamSnapSchedule";
 
-export default function Home() {
+export const revalidate = 900;
+
+export default async function Home() {
+  const scheduleData = await getScheduleData();
+  const schedule = scheduleData.events;
   const latest = seasons[0];
   const pinned = announcements.filter((a) => a.pinned);
   const topNews = news.slice(0, 3);
-  const nextEvent = schedule[0];
+  const nextEvent = findNextEvent(schedule);
   const stateFinals = schedule.find((event) => event.title.includes("State Finals"));
 
   return (
@@ -242,6 +247,17 @@ function formatEventDate(dateString: string) {
   if (!match) return dateString;
   const date = new Date(Number(match[1]), Number(match[2]) - 1, Number(match[3]));
   return date.toLocaleDateString("en-US", { month: "short", day: "numeric" });
+}
+
+function findNextEvent(events: ScheduleEvent[]) {
+  const today = new Date();
+  const startOfToday = new Date(today.getFullYear(), today.getMonth(), today.getDate()).getTime();
+
+  return events.find((event) => {
+    const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(event.date);
+    if (!match) return true;
+    return new Date(Number(match[1]), Number(match[2]) - 1, Number(match[3])).getTime() >= startOfToday;
+  }) ?? events[0];
 }
 
 function CommandRow({ label, value, meta }: { label: string; value: string; meta?: string }) {

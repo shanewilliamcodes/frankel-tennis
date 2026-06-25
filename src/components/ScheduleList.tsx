@@ -55,13 +55,25 @@ function mapsUrl(location: string) {
   return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`;
 }
 
-export function ScheduleList({ events }: { events: ScheduleEvent[] }) {
+export function ScheduleList({
+  events,
+  sourceNote,
+}: {
+  events: ScheduleEvent[];
+  sourceNote?: string;
+}) {
   const [filter, setFilter] = useState<FilterKey>("all");
   const active = FILTERS.find((f) => f.key === filter)!;
   const shown = events.filter((e) => active.test(e.type));
 
   return (
     <div>
+      {sourceNote && (
+        <div className="mb-5 rounded-lg border border-[var(--line)] bg-white px-4 py-3 text-sm font-semibold text-[var(--muted)]">
+          {sourceNote}
+        </div>
+      )}
+
       <div className="flex flex-wrap gap-2 mb-6">
         {FILTERS.map((f) => {
           const count = events.filter((e) => f.test(e.type)).length;
