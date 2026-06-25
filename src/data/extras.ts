@@ -61,7 +61,9 @@ export const awards: AwardCategory[] = [
     title: "Coaching Honors",
     items: [
       "Larry Stark — Michigan Jewish Sports Hall of Fame (2006)",
-      "Larry Stark — MHSAA Regional Coach of the Year (2022)",
+      "Larry Stark — MHSTeCA Regional Coach of the Year at Frankel (2016, 2022, 2025)",
+      "Larry Stark — MHSTeCA Regional Coach of the Year at West Bloomfield (2011)",
+      "Monica Stark — USPTA Certified Professional and strength & conditioning coach",
     ],
   },
   {
@@ -71,6 +73,7 @@ export const awards: AwardCategory[] = [
       "Catholic League Champions — 2010, 2023",
       "Best state finish: 7th of 24 (2023)",
       "11 MHSAA Division 4 State Finals appearances in 13 years",
+      "All 8 flights qualified for the Division 4 State Finals in 2025",
     ],
   },
   {

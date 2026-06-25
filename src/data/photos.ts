@@ -7,8 +7,8 @@
 
 export type Photo = {
   src: string;
-  // wide images span two columns
-  wide?: boolean;
+  width: number;
+  height: number;
 };
 
 // A standout team photo reused on the home hero.
@@ -19,16 +19,16 @@ export const plaquePhoto = "/photos/p09.jpg";
 
 // The photos speak for themselves — no captions.
 export const photos: Photo[] = [
-  { src: "/photos/p01.jpg" },
-  { src: "/photos/p11.jpg" },
-  { src: "/photos/p14.jpg", wide: true },
-  { src: "/photos/p03.jpg" },
-  { src: "/photos/p06.jpg" },
-  { src: "/photos/p07.jpg" },
-  { src: "/photos/p08.jpg" },
-  { src: "/photos/p10.jpg" },
-  { src: "/photos/p02.jpg" },
-  { src: "/photos/p04.jpg" },
-  { src: "/photos/p13.jpg" },
-  { src: "/photos/p12.jpg" },
+  { src: "/photos/p01.jpg", width: 1600, height: 1200 },
+  { src: "/photos/p14.jpg", width: 1600, height: 938 },
+  { src: "/photos/p11.jpg", width: 1600, height: 1266 },
+  { src: "/photos/p03.jpg", width: 1200, height: 1600 },
+  { src: "/photos/p06.jpg", width: 1200, height: 1600 },
+  { src: "/photos/p07.jpg", width: 1200, height: 1600 },
+  { src: "/photos/p08.jpg", width: 1200, height: 1600 },
+  { src: "/photos/p10.jpg", width: 1600, height: 1200 },
+  { src: "/photos/p02.jpg", width: 1200, height: 1600 },
+  { src: "/photos/p04.jpg", width: 1200, height: 1600 },
+  { src: "/photos/p12.jpg", width: 1600, height: 1200 },
+  { src: "/photos/p13.jpg", width: 1600, height: 1200 },
 ];

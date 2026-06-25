@@ -179,7 +179,7 @@ export const seasons: Season[] = [
     state: "Tied for 13th of 27 teams (5 pts) — Division 4 State Finals, Kalamazoo",
     highlights: [
       "Won the program's first-ever MHSAA regional championship — and reached state as a regional champ for the first time in school history.",
-      "Larry Stark named Regional Coach of the Year by his fellow coaches.",
+      "Larry Stark named MHSTeCA Regional Coach of the Year by his fellow coaches.",
       "Seventh state-tournament trip in nine years, with seven seniors on the roster.",
       "Senior co-captain Ethan Grey was the third and last of the Grey brothers to play for Frankel — three brothers across the program's rise.",
       "Four flights won regional championships: Hayden Dean (3S), Tony Carson (4S), Rubin/Robbins (3D), and Shaevsky/Miller (4D).",

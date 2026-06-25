@@ -15,7 +15,7 @@ export default function AwardsPage() {
       <PageHeader
         eyebrow="Trophy case"
         title="Awards & Honors"
-        subtitle="The program's championship history, coaching credentials and standout individual achievements."
+        subtitle="A concise record of the program's championships, coach recognition and standout player achievements."
       />
 
       <section className="section">
@@ -24,10 +24,34 @@ export default function AwardsPage() {
             <HonorStat value="11" label="MHSAA State Finals appearances" />
             <HonorStat value="2" label="MHSAA Regional championships" />
             <HonorStat value="7th" label="Best state finish, 2023" />
-            <HonorStat value="4" label="Boys tennis school titles listed" />
+            <HonorStat value="4" label="Larry Stark Regional Coach of the Year honors" />
           </div>
 
-          <div className="mt-10 grid gap-6 lg:grid-cols-3">
+          <div className="mt-8 rounded-lg border border-[var(--line)] bg-white p-6 shadow-sm">
+            <p className="eyebrow">Coach recognition</p>
+            <div className="mt-3 grid gap-4 lg:grid-cols-[minmax(0,1fr)_320px] lg:items-end">
+              <div>
+                <h2 className="text-2xl font-extrabold tracking-tight text-[var(--navy)]">
+                  Larry Stark has been named Regional Coach of the Year at both Frankel and West Bloomfield.
+                </h2>
+                <p className="mt-3 max-w-3xl leading-relaxed text-[var(--muted)]">
+                  MHSTeCA records list Stark as a Regional Coach of the Year at Frankel in 2016, 2022 and 2025,
+                  plus an earlier West Bloomfield honor in 2011. That recognition matches the program&apos;s arc:
+                  Frankel&apos;s first state appearances, two regional championships and a steady run of Division 4
+                  postseason qualification.
+                </p>
+              </div>
+              <div className="grid grid-cols-2 gap-2 text-sm font-extrabold text-[var(--navy)]">
+                {["2011", "2016", "2022", "2025"].map((year) => (
+                  <div key={year} className="rounded-lg bg-[var(--sky)] px-4 py-3 text-center">
+                    {year}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-8 grid gap-6 lg:grid-cols-3">
             {awards.map((cat) => (
               <section key={cat.title} className="card p-6">
                 <p className="eyebrow">{cat.title}</p>

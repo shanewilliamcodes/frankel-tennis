@@ -14,7 +14,7 @@ export default function PhotosPage() {
       <PageHeader
         eyebrow="Gallery"
         title="Photos"
-        subtitle="Team photos, match days and moments from the Jaguars' season. Tap any photo to enlarge."
+        subtitle="Team photos, match days and courtside moments from the Jaguars' season."
       />
       <section className="section">
         <div className="container-page">

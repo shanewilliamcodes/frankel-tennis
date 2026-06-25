@@ -25,8 +25,9 @@ export default function AboutPage() {
             <div className="prose-page max-w-3xl">
               <p>
                 {team.schoolName} is a small Jewish high school in {team.address.city}, Michigan, with roughly
-                145 students. Sports are central to the school&apos;s culture — about 70% of students play at least
-                one — and few programs capture the school&apos;s spirit like boys tennis.
+                145 students. Athletics are a big part of student life, and boys tennis has become one of the
+                clearest examples of what Frankel teams can do: compete hard, stay disciplined and represent the
+                school with pride.
               </p>
               <p>
                 Before head coach Larry Stark arrived, Frankel had never reached the state tournament in boys
@@ -35,13 +36,13 @@ export default function AboutPage() {
                 posted a best-ever 7th-place state finish in 2023.
               </p>
               <p>
-                Remarkably, the team does it while honoring Shabbat and the Jewish holidays — which often means
-                less practice and match time than opponents get. The MHSAA makes scheduling accommodations each
-                year so the Jaguars can compete while keeping their commitments.
+                The team also does this while honoring Shabbat and the Jewish holidays, which can mean less
+                practice and match time than opponents get. The MHSAA makes scheduling accommodations each year so
+                the Jaguars can compete while keeping their commitments.
               </p>
               <p>
-                What makes it work is a clear identity: a small roster, a demanding schedule, careful lineup
-                development and a belief that preparation can close the gap on size and depth.
+                The formula is simple but demanding: good habits, smart lineups, strong doubles chemistry and a
+                belief that preparation can close the gap against larger schools.
               </p>
             </div>
 
@@ -61,8 +62,9 @@ export default function AboutPage() {
       <section className="section bg-white border-y border-[var(--line)]">
         <div className="container-page">
           <SectionHeading eyebrow="Coaching staff" title="Larry & Monica Stark">
-            Two certified tennis professionals, one program identity: disciplined preparation, steady player
-            development and a team culture built to compete against deeper schools.
+            Two certified tennis professionals with complementary strengths: Larry brings a lifetime of high-level
+            tennis experience, while Monica adds technical instruction, fitness training and day-to-day player
+            development.
           </SectionHeading>
           <div className="mt-8 space-y-10">
             {coaches.map((c) => (

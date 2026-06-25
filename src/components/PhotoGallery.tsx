@@ -30,23 +30,28 @@ export function PhotoGallery({ photos }: { photos: Photo[] }) {
 
   return (
     <>
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
+      <div className="columns-1 gap-4 sm:columns-2 lg:columns-3">
         {photos.map((p, i) => (
           <button
             key={p.src}
             type="button"
             onClick={() => setOpen(i)}
-            className={`group relative overflow-hidden rounded-lg bg-slate-100 aspect-[4/3] ring-1 ring-[var(--line)] focus:outline-none focus:ring-2 focus:ring-[var(--royal)] ${
-              p.wide ? "col-span-2" : ""
-            }`}
+            className="group mb-4 block w-full break-inside-avoid rounded-lg border border-[var(--line)] bg-white p-1 shadow-sm transition hover:-translate-y-0.5 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-[var(--royal)]"
           >
-            <Image
-              src={p.src}
-              alt="Frankel Jaguars tennis"
-              fill
-              sizes="(max-width: 768px) 50vw, 33vw"
-              className="object-cover transition-transform duration-300 group-hover:scale-105"
-            />
+            <span
+              className="relative block overflow-hidden rounded-md bg-slate-100"
+              style={{ aspectRatio: `${p.width} / ${p.height}` }}
+            >
+              <Image
+                src={p.src}
+                alt="Frankel Jaguars tennis"
+                fill
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                className="object-cover transition-transform duration-500 group-hover:scale-[1.025]"
+                priority={i < 9}
+              />
+              <span className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-black/5" />
+            </span>
           </button>
         ))}
       </div>
@@ -56,18 +61,23 @@ export function PhotoGallery({ photos }: { photos: Photo[] }) {
           className="fixed inset-0 z-[100] bg-black/90 flex items-center justify-center p-4"
           onClick={close}
         >
-          <button
-            type="button"
-            aria-label="Close"
-            className="absolute top-4 right-4 text-white/80 hover:text-white text-3xl leading-none"
-            onClick={close}
-          >
-            ×
-          </button>
+          <div className="absolute left-4 right-4 top-4 flex items-center justify-between gap-4 text-white">
+            <p className="rounded-full bg-white/10 px-3 py-1 text-sm font-semibold text-white/85">
+              {open + 1} / {photos.length}
+            </p>
+            <button
+              type="button"
+              aria-label="Close"
+              className="rounded-full bg-white/10 px-3 py-1 text-2xl leading-none text-white/80 hover:bg-white/20 hover:text-white"
+              onClick={close}
+            >
+              ×
+            </button>
+          </div>
           <button
             type="button"
             aria-label="Previous"
-            className="absolute left-2 sm:left-6 text-white/70 hover:text-white text-4xl px-3"
+            className="absolute left-2 sm:left-6 rounded-full bg-white/10 px-3 text-4xl text-white/75 hover:bg-white/20 hover:text-white"
             onClick={(e) => { e.stopPropagation(); prev(); }}
           >
             ‹
@@ -87,7 +97,7 @@ export function PhotoGallery({ photos }: { photos: Photo[] }) {
           <button
             type="button"
             aria-label="Next"
-            className="absolute right-2 sm:right-6 text-white/70 hover:text-white text-4xl px-3"
+            className="absolute right-2 sm:right-6 rounded-full bg-white/10 px-3 text-4xl text-white/75 hover:bg-white/20 hover:text-white"
             onClick={(e) => { e.stopPropagation(); next(); }}
           >
             ›
