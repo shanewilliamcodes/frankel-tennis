@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { rulesSections, rulesGlossary, rulesLinks } from "@/data/extras";
+import { rulesSections, rulesLinks } from "@/data/extras";
 import { PageHeader } from "@/components/ui";
 
 export const metadata: Metadata = {
@@ -14,15 +14,10 @@ export default function RulesPage() {
       <PageHeader
         eyebrow="New to high school tennis?"
         title="Rules & Format"
-        subtitle="A quick, plain-language guide for players, parents and fans — how matches are scored and how a team gets to the State Finals."
+        subtitle="A quick, plain-language guide for players, parents and fans — how flights and duals work, how a team reaches the State Finals, and what's distinctive about Frankel's season."
       />
       <section className="section">
         <div className="container-page max-w-3xl">
-          <p className="mb-8 text-[15px] leading-relaxed text-[#25303f]">
-            Never watched a tennis match before? No problem. This walks through it from the very beginning — the
-            quirky scoring, what those &quot;No. 1 singles&quot; labels mean, and how a team actually wins — in order,
-            so each part builds on the last.
-          </p>
           <div className="space-y-8">
             {rulesSections.map((sec) => (
               <div key={sec.heading} className="card p-6">
@@ -40,17 +35,6 @@ export default function RulesPage() {
             ))}
           </div>
 
-          <div className="mt-8 card p-6">
-            <h2 className="text-lg font-extrabold text-[var(--navy)]">Quick glossary</h2>
-            <dl className="mt-4 divide-y divide-[var(--line)]">
-              {rulesGlossary.map((g) => (
-                <div key={g.term} className="flex flex-col gap-0.5 py-2.5 sm:flex-row sm:gap-4">
-                  <dt className="font-bold text-[var(--navy)] sm:w-40 sm:shrink-0">{g.term}</dt>
-                  <dd className="text-[15px] text-[#25303f]">{g.definition}</dd>
-                </div>
-              ))}
-            </dl>
-          </div>
 
           <div className="mt-10 rounded-xl bg-[var(--navy)] text-white p-6">
             <h2 className="font-extrabold">Official sources</h2>

@@ -36,8 +36,8 @@ export default function AboutPage() {
             Remarkably, the team does it while honoring Shabbat and the Jewish holidays — which often means less
             practice and match time than opponents get. The MHSAA makes scheduling accommodations each year so
             the Jaguars can compete while keeping their commitments. Many players never picked up a racket
-            competitively until they arrived at Frankel as freshmen; the program&apos;s &quot;no-cut&quot; ethos
-            means anyone who wants to play, plays.
+            competitively until they arrived at Frankel as freshmen — anyone who wants to play is welcomed onto
+            the team.
           </p>
           <p>
             What makes it work, in the coaches&apos; words, is a family atmosphere, an underdog mentality, and a
