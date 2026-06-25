@@ -35,13 +35,11 @@ export default function AboutPage() {
           <p>
             Remarkably, the team does it while honoring Shabbat and the Jewish holidays — which often means less
             practice and match time than opponents get. The MHSAA makes scheduling accommodations each year so
-            the Jaguars can compete while keeping their commitments. Many players never picked up a racket
-            competitively until they arrived at Frankel as freshmen — anyone who wants to play is welcomed onto
-            the team.
+            the Jaguars can compete while keeping their commitments.
           </p>
           <p>
-            What makes it work, in the coaches&apos; words, is a family atmosphere, an underdog mentality, and a
-            belief that effort and determination can close the gap on talent and experience.
+            What makes it work is a clear identity: a small roster, a demanding schedule, careful lineup
+            development and a belief that preparation can close the gap on size and depth.
           </p>
         </div>
       </section>
@@ -94,16 +92,6 @@ export default function AboutPage() {
                       <p key={i}>{para}</p>
                     ))}
                   </div>
-                  {c.quote && (
-                    <blockquote className="mt-4 border-l-4 border-[var(--royal)] bg-white rounded-r-lg px-5 py-4 italic text-[#25303f]">
-                      “{c.quote.text}”
-                      {c.quote.by && (
-                        <footer className="mt-2 not-italic text-sm font-bold text-[var(--muted)]">
-                          — {c.quote.by}
-                        </footer>
-                      )}
-                    </blockquote>
-                  )}
                 </div>
               </article>
             ))}

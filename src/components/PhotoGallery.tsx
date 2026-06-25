@@ -36,7 +36,7 @@ export function PhotoGallery({ photos }: { photos: Photo[] }) {
             key={p.src}
             type="button"
             onClick={() => setOpen(i)}
-            className={`group relative overflow-hidden rounded-xl bg-slate-100 aspect-[4/3] ${
+            className={`group relative overflow-hidden rounded-lg bg-slate-100 aspect-[4/3] ring-1 ring-[var(--line)] focus:outline-none focus:ring-2 focus:ring-[var(--royal)] ${
               p.wide ? "col-span-2" : ""
             }`}
           >

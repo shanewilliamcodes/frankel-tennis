@@ -30,7 +30,7 @@ export const scheduleSeasonLabel = "Fall 2026";
 
 export const schedule: ScheduleEvent[] = [
   // ----- August: preseason challenge matches & openers -----
-  { date: "2026-08-10", type: "Challenge Match", title: "Challenge Matches", location: "Drake Sports Park", time: "10:00 AM – 12:00 PM", note: "Preseason begins · arrive 9:45 AM. All are welcome." },
+  { date: "2026-08-10", type: "Challenge Match", title: "Challenge Matches", location: "Drake Sports Park", time: "10:00 AM – 12:00 PM", note: "Preseason begins · arrive 9:45 AM." },
   { date: "2026-08-11", type: "Challenge Match", title: "Challenge Matches", location: "Drake Sports Park", time: "10:00 AM – 12:00 PM", note: "Arrive 9:45 AM." },
   { date: "2026-08-12", type: "Challenge Match", title: "Challenge Matches", location: "Drake Sports Park", time: "10:00 AM – 12:00 PM" },
   { date: "2026-08-13", type: "Challenge Match", title: "Challenge Matches", location: "Drake Sports Park", time: "10:00 AM – 12:00 PM" },
@@ -77,5 +77,5 @@ export const schedule: ScheduleEvent[] = [
   { date: "2026-10-05", type: "Practice", title: "Practice", location: "Drake Sports Park", time: "4:00 – 6:00 PM" },
   { date: "2026-10-06", type: "Practice", title: "Practice", location: "Drake Sports Park", time: "4:00 – 6:00 PM" },
   { date: "2026-10-07", type: "Tournament", title: "MHSAA Division 4 Regional", opponent: "Grosse Ile", opponentKey: "grosse-ile", location: "Grosse Ile HS", note: "Need ~18 points to qualify for the State Finals." },
-  { date: "Mid-October 2026", type: "Tournament", title: "MHSAA Division 4 State Finals", location: "TBD", note: "Date & site to be confirmed. Accommodations are made around Shabbat each year." },
+  { date: "2026-10-21", type: "Tournament", title: "MHSAA Division 4 State Finals", location: "Midland Tennis Center", note: "Official MHSAA dates: Oct. 21-22. Accommodations are made around Shabbat each year." },
 ];

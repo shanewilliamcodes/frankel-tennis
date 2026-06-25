@@ -38,16 +38,16 @@ export type Announcement = {
 export const announcements: Announcement[] = [
   {
     date: "Summer 2026",
-    title: "Welcome to the new Jaguars Tennis website!",
+    title: "2026 season information is now in one place",
     body:
-      "This is the new home for Frankel Jewish Academy boys tennis — schedule, roster, stats, history and news, all in one place. Check back as we add the fall 2025–26 roster and schedule.",
+      "The TeamSnap schedule, current roster, player profiles, opponent scouting pages, season history and news archive are now collected here for players and parents.",
     pinned: true,
   },
   {
-    date: "Fall season",
-    title: "Come out for the team — everyone is welcome",
+    date: "Aug. 10, 2026",
+    title: "Preseason challenge matches begin",
     body:
-      "If you're a Frankel student who wants to play, come out for the team — no experience required. Many of our players picked up a racket for the first time as freshmen.",
+      "Challenge matches start Monday, Aug. 10 at Drake Sports Park. Each date is listed separately on the schedule so players and parents can confirm the correct day and time.",
   },
 ];
 
@@ -113,8 +113,9 @@ export const rulesSections: { heading: string; intro?: string; points: string[] 
       "Besides one-on-one duals, teams play tournaments where many schools compete at once — each flight plays its own bracket and earns points toward a team total, and the school with the most points wins. The MHSAA state playoffs work the same way.",
     points: [
       "Divisions: schools are grouped by enrollment so they face schools their own size. Frankel competes in Division 4, the smallest-schools division.",
-      "Regionals come first. Each flight plays a bracket and high finishers earn points; a team usually needs roughly 18 points to win its regional and qualify for the State Finals as a team — and a standout individual flight can punch its own ticket even if the team doesn't.",
-      "State Finals: every flight plays its bracket, and the team with the most total points across all eight flights is the state champion. (In 2025, all eight Frankel flights qualified for the Finals.)",
+      "Regionals come first. In 2026, Lower Peninsula boys tennis regionals are scheduled for Oct. 7, 8, 9 or 10. Each flight plays a bracket and earns points toward the team total.",
+      "State Finals: every qualified flight plays its bracket, and the team with the most total points across all eight flights is the state champion. The 2026 Division 4 Finals are Oct. 21-22 at Midland Tennis Center.",
+      "In 2025, all eight Frankel flights qualified for the Division 4 State Finals — a useful benchmark for what a complete postseason run looks like.",
     ],
   },
   {
@@ -122,16 +123,16 @@ export const rulesSections: { heading: string; intro?: string; points: string[] 
     intro:
       "A few things that shape the Jaguars' season specifically:",
     points: [
-      "In Michigan's Lower Peninsula, boys tennis is a fall sport — the season runs from August through the mid-October State Finals.",
+      "In Michigan's Lower Peninsula, boys tennis is a fall sport — the season runs from August through the October State Finals.",
       "Even though Frankel is a small Jewish day school, the Jaguars play their league schedule in the Catholic League (CHSL), AA Division — facing programs like Jackson Lumen Christi, Warren De La Salle and Divine Child.",
       "Because Frankel observes Shabbat (Friday evening through Saturday) and the Jewish holidays, the team often gets less practice and match time than opponents. The MHSAA arranges scheduling each year so the Jaguars never have to choose between their faith and competing.",
-      "Frankel is a small program where everyone who comes out makes the team — many players pick up a racket for the first time as freshmen and grow into varsity contributors.",
+      "Frankel's roster is usually smaller than many opponents, so lineup flexibility, doubles chemistry and steady player development matter all season.",
     ],
   },
 ];
 
 export const rulesLinks = [
   { label: "MHSAA Boys Tennis (official)", url: "https://www.mhsaa.com/sports/boys-tennis" },
-  { label: "MHSAA Tennis regulations & seeding", url: "https://www.mhsaa.com/sports/boys-tennis" },
+  { label: "MHSAA Results Archive", url: "https://www.mhsaa.com/sports/boys-tennis/results-archive" },
   { label: "USTA Rules of Tennis", url: "https://www.usta.com/en/home/improve/rules-and-regulations.html" },
 ];

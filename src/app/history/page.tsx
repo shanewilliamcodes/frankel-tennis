@@ -47,7 +47,7 @@ export default function HistoryPage() {
                 )}
 
                 {s.results && s.results.length > 0 && (
-                  <details className="mt-5 group">
+                  <details className="mt-5 group" open={s.year >= 2021}>
                     <summary className="cursor-pointer select-none text-sm font-bold text-[var(--royal)]">
                       View full results ({s.results.length})
                     </summary>
@@ -84,7 +84,7 @@ export default function HistoryPage() {
                 )}
 
                 {s.lineup && s.lineup.length > 0 && (
-                  <details className="mt-5 group">
+                  <details className="mt-5 group" open={s.year >= 2021}>
                     <summary className="cursor-pointer select-none text-sm font-bold text-[var(--royal)]">
                       View lineup
                     </summary>

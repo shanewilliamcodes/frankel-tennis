@@ -12,12 +12,26 @@ export default function RulesPage() {
   return (
     <>
       <PageHeader
-        eyebrow="New to high school tennis?"
+        eyebrow="Team format"
         title="Rules & Format"
-        subtitle="A quick, plain-language guide for players, parents and fans — how flights and duals work, how a team reaches the State Finals, and what's distinctive about Frankel's season."
+        subtitle="A plain-language guide for players and parents: how flights, dual meets, tournaments, regionals and the Division 4 State Finals fit together."
       />
       <section className="section">
-        <div className="container-page max-w-3xl">
+        <div className="container-page max-w-4xl">
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4 mb-8">
+            {[
+              ["8 flights", "4 singles and 4 doubles courts make up a varsity team match."],
+              ["5 wins", "Win five of the eight flights and you win the dual meet."],
+              ["D4 regionals", "2026 regionals are scheduled for Oct. 7-10."],
+              ["State Finals", "Division 4 plays Oct. 21-22 at Midland Tennis Center."],
+            ].map(([label, value]) => (
+              <div key={label} className="card p-4">
+                <p className="stat-label">{label}</p>
+                <p className="mt-2 text-sm leading-relaxed text-[#25303f]">{value}</p>
+              </div>
+            ))}
+          </div>
+
           <div className="space-y-8">
             {rulesSections.map((sec) => (
               <div key={sec.heading} className="card p-6">
@@ -36,7 +50,7 @@ export default function RulesPage() {
           </div>
 
 
-          <div className="mt-10 rounded-xl bg-[var(--navy)] text-white p-6">
+          <div className="mt-10 rounded-lg bg-[var(--navy)] text-white p-6">
             <h2 className="font-extrabold">Official sources</h2>
             <p className="mt-1 text-sm text-white/80">
               For the complete, authoritative rules and the current season&apos;s regulations:

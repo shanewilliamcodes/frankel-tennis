@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { opponents, lookupLinks } from "@/data/opponents";
+import { opponents, lookupLinks, seriesRecord } from "@/data/opponents";
 import { PageHeader } from "@/components/ui";
 
 export const metadata: Metadata = {
@@ -31,8 +31,22 @@ export default function OpponentsPage() {
                   )}
                 </div>
                 {o.city && <p className="text-sm text-[var(--muted)]">{o.city}</p>}
+                <div className="mt-4 grid grid-cols-2 gap-2 text-sm">
+                  <div className="rounded-lg bg-slate-50 border border-[var(--line)] p-3">
+                    <p className="stat-label">Vs. Frankel</p>
+                    <p className="mt-1 font-extrabold text-[var(--navy)]">
+                      {seriesRecord(o.headToHead) ?? "No recorded duals"}
+                    </p>
+                  </div>
+                  <div className="rounded-lg bg-slate-50 border border-[var(--line)] p-3">
+                    <p className="stat-label">2025 roster</p>
+                    <p className="mt-1 font-extrabold text-[var(--navy)]">
+                      {o.roster2025 ? `${o.roster2025.length} players` : "To confirm"}
+                    </p>
+                  </div>
+                </div>
                 {o.notes && <p className="mt-3 text-sm text-[#25303f] line-clamp-3">{o.notes}</p>}
-                <span className="mt-4 inline-block text-sm font-bold text-[var(--royal)]">Scouting page →</span>
+                <span className="mt-4 inline-block text-sm font-bold text-[var(--royal)]">Scouting page</span>
               </Link>
             ))}
           </div>

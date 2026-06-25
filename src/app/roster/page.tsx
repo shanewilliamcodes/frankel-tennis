@@ -31,20 +31,27 @@ export default function RosterPage() {
 
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {roster.map((p) => (
-              <Link key={p.slug} href={`/roster/${p.slug}`} className="card card-hover p-5 flex items-center gap-4">
-                <div className="grid place-items-center w-14 h-14 rounded-full bg-[var(--navy)] text-white font-extrabold shrink-0">
-                  {initials(p.name)}
-                </div>
-                <div className="min-w-0">
-                  <div className="flex items-center gap-2">
-                    <h3 className="font-extrabold text-[var(--navy)] truncate">{p.name}</h3>
-                    {p.isCaptain && <Badge tone="gold">Captain</Badge>}
+              <Link key={p.slug} href={`/roster/${p.slug}`} className="card card-hover p-5 block">
+                <div className="flex items-start gap-4">
+                  <div className="grid place-items-center w-14 h-14 rounded-full bg-[var(--navy)] text-white font-extrabold shrink-0">
+                    {initials(p.name)}
                   </div>
-                  <p className="text-sm text-[var(--muted)]">
-                    {[p.grade, p.flight].filter(Boolean).join(" · ")}
-                  </p>
-                  <span className="mt-1 inline-block text-xs font-bold text-[var(--royal)]">View profile →</span>
+                  <div className="min-w-0">
+                    <div className="flex items-center gap-2">
+                      <h3 className="font-extrabold text-[var(--navy)] truncate">{p.name}</h3>
+                      {p.isCaptain && <Badge tone="gold">Captain</Badge>}
+                    </div>
+                    <p className="text-sm text-[var(--muted)]">
+                      {[p.grade, p.flight].filter(Boolean).join(" · ")}
+                    </p>
+                  </div>
                 </div>
+                <p className="mt-4 line-clamp-3 text-sm leading-relaxed text-[#25303f]">
+                  {p.highlights?.[0] ?? p.bio ?? "Profile details will be added as the season develops."}
+                </p>
+                <span className="mt-4 inline-block text-xs font-bold uppercase tracking-[0.12em] text-[var(--royal)]">
+                  View profile
+                </span>
               </Link>
             ))}
           </div>

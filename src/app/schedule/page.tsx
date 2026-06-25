@@ -33,7 +33,7 @@ export default function SchedulePage() {
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center rounded-full bg-white text-[var(--navy)] px-5 py-2.5 text-sm font-bold hover:bg-[var(--sky)] transition-colors whitespace-nowrap"
             >
-              📲 Open in TeamSnap ↗
+              Open in TeamSnap ↗
             </a>
           </div>
 

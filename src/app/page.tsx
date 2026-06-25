@@ -3,91 +3,106 @@ import Image from "next/image";
 import { team, programStats } from "@/data/team";
 import { heroPhoto } from "@/data/photos";
 import { seasons } from "@/data/seasons";
+import { schedule } from "@/data/schedule";
 import { news } from "@/data/news";
 import { announcements } from "@/data/extras";
 import { Badge, SectionHeading } from "@/components/ui";
 import { Logo } from "@/components/Logo";
 
 export default function Home() {
-  const latest = seasons.find((s) => !s.needsUpdate) ?? seasons[0];
+  const latest = seasons[0];
   const pinned = announcements.filter((a) => a.pinned);
   const topNews = news.slice(0, 3);
+  const nextEvent = schedule[0];
+  const stateFinals = schedule.find((event) => event.title.includes("State Finals"));
 
   return (
     <>
-      {/* ===== Hero ===== */}
       <section className="relative overflow-hidden bg-[var(--navy)] text-white">
-        <div
-          aria-hidden
-          className="absolute inset-0 opacity-[0.15]"
-          style={{
-            backgroundImage:
-              "radial-gradient(circle at 20% 20%, #1d4ed8 0, transparent 40%), radial-gradient(circle at 80% 0%, #2563eb 0, transparent 35%)",
-          }}
+        <Image
+          src={heroPhoto}
+          alt="Frankel Jaguars boys tennis team"
+          fill
+          sizes="100vw"
+          className="object-cover object-[center_45%] opacity-55"
+          priority
         />
-        <div className="container-page relative py-16 sm:py-24 grid lg:grid-cols-2 gap-10 items-center">
-          <div>
-            <div className="flex items-center gap-2">
-              <Logo size={28} light />
-              <span className="text-xs font-bold uppercase tracking-[0.2em] text-[var(--sky)]">
-                {team.schoolName} · {team.mascot}
-              </span>
-            </div>
-            <h1 className="mt-5 text-4xl sm:text-6xl font-extrabold tracking-tight leading-[1.05]">
-              Frankel Jaguars
-              <br />
-              <span className="text-[var(--sky)]">Boys Tennis</span>
-            </h1>
-            <p className="mt-5 max-w-2xl text-lg text-white/85 leading-relaxed">{team.intro}</p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Link
-                href="/schedule"
-                className="inline-flex items-center rounded-full bg-white px-5 py-2.5 text-sm font-bold text-[var(--navy)] hover:bg-[var(--sky)] transition-colors"
-              >
-                View Schedule
-              </Link>
-              <Link
-                href="/history"
-                className="inline-flex items-center rounded-full border border-white/40 px-5 py-2.5 text-sm font-bold text-white hover:bg-white/10 transition-colors"
-              >
-                History &amp; Stats
-              </Link>
-              <Link
-                href="/roster"
-                className="inline-flex items-center rounded-full border border-white/40 px-5 py-2.5 text-sm font-bold text-white hover:bg-white/10 transition-colors"
-              >
-                Meet the Team
-              </Link>
-            </div>
-          </div>
-          <div className="relative aspect-[4/3] rounded-2xl overflow-hidden ring-1 ring-white/20 shadow-2xl hidden lg:block">
-            <Image
-              src={heroPhoto}
-              alt="Frankel Jaguars boys tennis team"
-              fill
-              sizes="(max-width: 1024px) 0px, 45vw"
-              className="object-cover"
-              priority
-            />
-          </div>
-        </div>
-      </section>
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(6,27,51,.96)_0%,rgba(6,27,51,.82)_44%,rgba(6,27,51,.36)_100%)]" />
+        <div className="absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-[var(--navy)] to-transparent" />
 
-      {/* ===== Stat strip ===== */}
-      <section className="bg-[var(--sky)] border-y border-[var(--line)]">
-        <div className="container-page py-8 grid grid-cols-2 md:grid-cols-4 gap-6">
-          {programStats.map((s) => (
-            <div key={s.label} className="text-center">
-              <div className="text-3xl sm:text-4xl font-extrabold text-[var(--navy)]">{s.value}</div>
-              <div className="mt-1 text-xs font-semibold uppercase tracking-wide text-[var(--muted)]">
-                {s.label}
+        <div className="container-page relative py-16 sm:py-24 lg:py-28">
+          <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_360px] lg:items-end">
+            <div>
+              <div className="flex items-center gap-3">
+                <Logo size={34} light />
+                <span className="text-xs font-bold uppercase tracking-[0.18em] text-[var(--sky)]">
+                  {team.schoolName} · {team.mascot}
+                </span>
+              </div>
+              <h1 className="mt-6 max-w-4xl text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.02]">
+                Frankel Jaguars
+                <span className="block text-[var(--sky)]">Boys Tennis</span>
+              </h1>
+              <p className="mt-6 max-w-2xl text-lg sm:text-xl text-white/86 leading-relaxed">{team.intro}</p>
+              <div className="mt-8 flex flex-wrap gap-3">
+                <Link href="/schedule" className="button-primary">
+                  View Schedule
+                </Link>
+                <Link href="/opponents" className="button-secondary">
+                  Scout Opponents
+                </Link>
+                <Link href="/history" className="button-secondary">
+                  History &amp; Stats
+                </Link>
               </div>
             </div>
-          ))}
+
+            <aside className="rounded-lg border border-white/20 bg-white/10 p-5 backdrop-blur-md shadow-2xl">
+              <p className="text-xs font-bold uppercase tracking-[0.16em] text-[var(--sky)]">
+                Season command center
+              </p>
+              <h2 className="mt-2 text-2xl font-extrabold">{team.tagline}</h2>
+              <div className="mt-5 space-y-4">
+                {nextEvent && (
+                  <CommandRow
+                    label="Next team date"
+                    value={nextEvent.title}
+                    meta={`${formatEventDate(nextEvent.date)}${nextEvent.time ? ` · ${nextEvent.time}` : ""}`}
+                  />
+                )}
+                <CommandRow label="Latest season" value={latest.headline} meta={latest.dualRecord ? `${latest.dualRecord} dual record` : undefined} />
+                {stateFinals && (
+                  <CommandRow
+                    label="Postseason target"
+                    value={stateFinals.title}
+                    meta={`${formatEventDate(stateFinals.date)} · ${stateFinals.location}`}
+                  />
+                )}
+              </div>
+              <div className="mt-5 grid grid-cols-2 gap-2">
+                <a href={team.teamSnap} target="_blank" rel="noopener noreferrer" className="button-primary text-center">
+                  TeamSnap
+                </a>
+                <a href={team.teamStore} target="_blank" rel="noopener noreferrer" className="button-secondary text-center">
+                  Team Store
+                </a>
+              </div>
+            </aside>
+          </div>
+
+          <div className="mt-12 grid grid-cols-2 gap-3 md:grid-cols-4">
+            {programStats.map((s) => (
+              <div key={s.label} className="rounded-lg border border-white/20 bg-white/95 p-4 text-[var(--navy)] shadow-xl">
+                <div className="text-2xl sm:text-3xl font-extrabold">{s.value}</div>
+                <div className="mt-1 text-[0.68rem] font-extrabold uppercase tracking-[0.12em] text-[var(--muted)]">
+                  {s.label}
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* ===== Announcements ===== */}
       {pinned.length > 0 && (
         <section className="section">
           <div className="container-page">
@@ -97,13 +112,13 @@ export default function Home() {
                 className="card card-hover p-6 sm:p-8 border-l-4 border-l-[var(--royal)]"
               >
                 <div className="flex items-center gap-3">
-                  <Badge tone="blue">📣 Announcement</Badge>
+                  <Badge tone="blue">Announcement</Badge>
                   <span className="text-xs text-[var(--muted)]">{a.date}</span>
                 </div>
                 <h2 className="mt-3 text-xl font-extrabold text-[var(--navy)]">{a.title}</h2>
                 <p className="mt-2 text-[var(--muted)] leading-relaxed">{a.body}</p>
                 <Link href="/announcements" className="mt-4 inline-block text-sm font-bold text-[var(--royal)] hover:underline">
-                  All announcements →
+                  All announcements
                 </Link>
               </div>
             ))}
@@ -111,23 +126,24 @@ export default function Home() {
         </section>
       )}
 
-      {/* ===== Latest season spotlight ===== */}
-      <section className="section bg-slate-50 border-y border-[var(--line)]">
+      <section className="section bg-white border-y border-[var(--line)]">
         <div className="container-page">
           <SectionHeading eyebrow="Latest season" title={`${latest.year}: ${latest.headline}`}>
             {latest.dualRecord ? `Dual-match record: ${latest.dualRecord}.` : undefined}
           </SectionHeading>
-          <div className="grid gap-6 md:grid-cols-2">
-            <ul className="space-y-3">
-              {latest.highlights.map((h, i) => (
-                <li key={i} className="flex gap-3 text-[15px] text-[#25303f]">
-                  <span className="mt-1 text-[var(--royal)]" aria-hidden>🎾</span>
-                  <span>{h}</span>
-                </li>
-              ))}
-            </ul>
+          <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_360px]">
             <div className="card p-6">
-              <h3 className="font-extrabold text-[var(--navy)]">By the numbers</h3>
+              <ul className="space-y-3">
+                {latest.highlights.map((h, i) => (
+                  <li key={i} className="flex gap-3 text-[15px] leading-relaxed text-[#25303f]">
+                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--royal)]" aria-hidden />
+                    <span>{h}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="card p-6">
+              <h3 className="font-extrabold text-[var(--navy)]">Season resume</h3>
               <dl className="mt-4 space-y-3 text-sm">
                 {latest.league && <Row label="League" value={latest.league} />}
                 {latest.regional && <Row label="Regional" value={latest.regional} />}
@@ -137,31 +153,28 @@ export default function Home() {
                 href="/history"
                 className="mt-6 inline-block text-sm font-bold text-[var(--royal)] hover:underline"
               >
-                See every season →
+                See the full record book
               </Link>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ===== Quick links ===== */}
       <section className="section">
         <div className="container-page">
-          <SectionHeading eyebrow="Explore the program" title="Everything in one place" />
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            <QuickCard href="/schedule" title="Schedule" emoji="📅" desc="Matches, practices and key dates for the season." />
-            <QuickCard href="/roster" title="Roster & Lineup" emoji="👥" desc="Meet the players and see the flight-by-flight lineup." />
-            <QuickCard href="/history" title="History & Stats" emoji="📊" desc="Season-by-season results going back to 2015." />
-            <QuickCard href="/opponents" title="Opponents" emoji="🆚" desc="Who we're facing — with links to look up their rosters." />
-            <QuickCard href="/news" title="News & Press" emoji="📰" desc="Articles about the team, the coaches and the run to states." />
-            <QuickCard href="/photos" title="Photos" emoji="📸" desc="Team photos, match days and moments from the season." />
-            <QuickCard href="/about" title="About the Team" emoji="ℹ️" desc="The story, plus Coach Larry & Monica Stark's bios." />
+          <SectionHeading eyebrow="Explore the program" title="Built for players and parents" />
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            <QuickCard href="/schedule" index="01" title="Schedule" desc="Matches, practices, challenge matches and postseason dates." />
+            <QuickCard href="/roster" index="02" title="Roster & Player Profiles" desc="Current players, 2025 stats and career highlights where available." />
+            <QuickCard href="/opponents" index="03" title="Opponent Scouting" desc="Rosters, 2025 records and year-by-year results vs. Frankel." />
+            <QuickCard href="/history" index="04" title="History & Stats" desc="Season records, lineups, results and the Division 4 picture." />
+            <QuickCard href="/rules" index="05" title="Rules & Format" desc="Flights, dual meets, tournaments, regionals and State Finals." />
+            <QuickCard href="/photos" index="06" title="Photos" desc="A clean gallery of team photos and match-day moments." />
           </div>
         </div>
       </section>
 
-      {/* ===== Latest news ===== */}
-      <section className="section bg-slate-50 border-t border-[var(--line)]">
+      <section className="section bg-white border-y border-[var(--line)]">
         <div className="container-page">
           <SectionHeading eyebrow="In the press" title="Latest news" />
           <div className="grid gap-5 md:grid-cols-3">
@@ -179,17 +192,16 @@ export default function Home() {
                 </div>
                 <h3 className="mt-3 font-bold text-[var(--navy)] leading-snug">{n.title}</h3>
                 <p className="mt-2 text-sm text-[var(--muted)] flex-1">{n.summary}</p>
-                <span className="mt-3 text-xs font-bold text-[var(--royal)]">{n.source} ↗</span>
+                <span className="mt-3 text-xs font-bold text-[var(--royal)]">{n.source}</span>
               </a>
             ))}
           </div>
           <Link href="/news" className="mt-6 inline-block text-sm font-bold text-[var(--royal)] hover:underline">
-            All news →
+            All news
           </Link>
         </div>
       </section>
 
-      {/* ===== Players & Shop ===== */}
       <section className="section">
         <div className="container-page grid gap-5 md:grid-cols-2">
           <a
@@ -201,12 +213,9 @@ export default function Home() {
             <p className="eyebrow">Players & parents</p>
             <h2 className="text-2xl font-extrabold text-[var(--navy)]">TeamSnap</h2>
             <p className="text-[var(--muted)]">
-              Schedules, availability, lineups and team messaging all live in TeamSnap. Log in to stay in sync
-              with the team.
+              Live schedule updates, availability, team messaging and day-to-day logistics live in TeamSnap.
             </p>
-            <span className="mt-2 inline-flex items-center rounded-full bg-[var(--navy)] text-white px-5 py-2.5 text-sm font-bold">
-              📲 Open TeamSnap ↗
-            </span>
+            <span className="mt-2 button-dark">Open TeamSnap</span>
           </a>
 
           <a
@@ -215,18 +224,33 @@ export default function Home() {
             rel="noopener noreferrer"
             className="card card-hover p-8 flex flex-col items-start gap-3"
           >
-            <p className="eyebrow">Rep the team</p>
+            <p className="eyebrow">Team gear</p>
             <h2 className="text-2xl font-extrabold text-[var(--navy)]">Official Team Store</h2>
             <p className="text-[var(--muted)]">
-              Jaguars hats, hoodies, tees and more — fully customizable, shipped to your door (via BSN Sports).
+              Jaguars hats, hoodies, tees and more through the Frankel BSN Sports storefront.
             </p>
-            <span className="mt-2 inline-flex items-center rounded-full bg-[var(--navy)] text-white px-5 py-2.5 text-sm font-bold">
-              🛍️ Shop the store ↗
-            </span>
+            <span className="mt-2 button-dark">Shop the Store</span>
           </a>
         </div>
       </section>
     </>
+  );
+}
+
+function formatEventDate(dateString: string) {
+  const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(dateString);
+  if (!match) return dateString;
+  const date = new Date(Number(match[1]), Number(match[2]) - 1, Number(match[3]));
+  return date.toLocaleDateString("en-US", { month: "short", day: "numeric" });
+}
+
+function CommandRow({ label, value, meta }: { label: string; value: string; meta?: string }) {
+  return (
+    <div className="border-t border-white/15 pt-4 first:border-t-0 first:pt-0">
+      <p className="text-[0.68rem] font-extrabold uppercase tracking-[0.12em] text-white/55">{label}</p>
+      <p className="mt-1 font-bold leading-snug text-white">{value}</p>
+      {meta && <p className="mt-1 text-sm text-white/70">{meta}</p>}
+    </div>
   );
 }
 
@@ -239,13 +263,15 @@ function Row({ label, value }: { label: string; value: string }) {
   );
 }
 
-function QuickCard({ href, title, desc, emoji }: { href: string; title: string; desc: string; emoji: string }) {
+function QuickCard({ href, title, desc, index }: { href: string; title: string; desc: string; index: string }) {
   return (
     <Link href={href} className="card card-hover p-6 block">
-      <div className="text-2xl" aria-hidden>{emoji}</div>
-      <h3 className="mt-3 font-extrabold text-[var(--navy)]">{title}</h3>
-      <p className="mt-1.5 text-sm text-[var(--muted)]">{desc}</p>
-      <span className="mt-4 inline-block text-sm font-bold text-[var(--royal)]">Open →</span>
+      <div className="flex items-start justify-between gap-4">
+        <p className="text-[0.68rem] font-extrabold uppercase tracking-[0.14em] text-[var(--royal)]">{index}</p>
+        <span className="text-sm font-bold text-[var(--royal)]">Open</span>
+      </div>
+      <h3 className="mt-5 font-extrabold text-[var(--navy)]">{title}</h3>
+      <p className="mt-2 text-sm leading-relaxed text-[var(--muted)]">{desc}</p>
     </Link>
   );
 }

@@ -21,13 +21,12 @@ live site updates automatically.
 | School info, address, stats | `src/data/team.ts` |
 | Nav menu links | `src/data/nav.ts` |
 
-### Things currently marked "to update"
-- **Schedule** (`scheduleIsPlaceholder = true`) — sample entries; replace with the real fall schedule.
-- **Roster** (`rosterIsProvisional = true`) — shows the most recent published (2024) lineup as a starting point.
-- **2025 season** (`needsUpdate: true` in `seasons.ts`) — add final fall 2025 results.
+### Current data status
+- **Schedule** is the real Fall 2026 TeamSnap schedule, including each challenge-match date as its own entry.
+- **Roster** is the coach-provided 2026 roster, with returning-player details from the 2025 TennisReporting data where available.
+- **History & opponents** include season results, lineups, opponent rosters, 2025 opponent records and recorded head-to-head history from TennisReporting/MHSAA sources.
 
-Flip the `*IsPlaceholder` / `needsUpdate` flags to `false` (or remove them) once real data is in, and the
-on-page "update" banners disappear.
+When new information comes in, update the matching file under `src/data/` and the site will rebuild automatically after the next GitHub push.
 
 ## Local development
 

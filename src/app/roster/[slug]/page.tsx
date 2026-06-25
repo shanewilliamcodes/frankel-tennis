@@ -60,6 +60,19 @@ export default async function PlayerPage({
 
       <section className="section">
         <div className="container-page max-w-3xl">
+          <div className="grid gap-3 sm:grid-cols-3 mb-8">
+            {[
+              ["Class", player.grade ?? "To be updated"],
+              ["Current flight", player.flight ?? "Preseason TBD"],
+              ["Team experience", player.yearsOnTeam ? `${player.yearsOnTeam} years` : "To be updated"],
+            ].map(([label, value]) => (
+              <div key={label} className="card p-4">
+                <p className="stat-label">{label}</p>
+                <p className="mt-2 font-extrabold text-[var(--navy)]">{value}</p>
+              </div>
+            ))}
+          </div>
+
           {player.bio && <p className="text-lg leading-relaxed text-[#25303f]">{player.bio}</p>}
 
           {player.highlights && player.highlights.length > 0 && (
@@ -68,7 +81,7 @@ export default async function PlayerPage({
               <ul className="mt-4 space-y-3">
                 {player.highlights.map((h, i) => (
                   <li key={i} className="card p-4 flex gap-3">
-                    <span aria-hidden className="text-[var(--royal)]">🎾</span>
+                    <span aria-hidden className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--royal)]" />
                     <span className="text-[#25303f]">{h}</span>
                   </li>
                 ))}

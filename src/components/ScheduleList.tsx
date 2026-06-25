@@ -14,7 +14,7 @@ const typeTone: Record<EventType, "blue" | "gold" | "gray" | "green"> = {
 };
 
 // Timezone-safe: build the date in LOCAL time from YYYY-MM-DD so the weekday
-// never shifts. Non-ISO strings (e.g. "Mid-October 2026") pass through.
+// never shifts. Non-ISO strings pass through.
 function formatDate(d: string) {
   const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(d);
   if (!m) return { main: d, sub: "" };
@@ -87,7 +87,7 @@ export function ScheduleList({ events }: { events: ScheduleEvent[] }) {
                       e.title
                     )}
                   </h3>
-                  {e.location && <p className="text-sm text-[var(--muted)]">📍 {e.location}</p>}
+                  {e.location && <p className="text-sm text-[var(--muted)]">Location: {e.location}</p>}
                   {e.note && <p className="mt-1 text-sm text-[var(--muted)]">{e.note}</p>}
                 </div>
               </div>

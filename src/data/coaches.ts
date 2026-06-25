@@ -3,7 +3,6 @@ export type Coach = {
   role: string;
   bio: string[];
   honors?: string[];
-  quote?: { text: string; by?: string };
   photo?: string;
   photoCaption?: string;
   photoAspect?: "portrait" | "landscape";
@@ -18,7 +17,7 @@ export const coaches: Coach[] = [
     photoAspect: "landscape",
     bio: [
       "Larry Stark took over the Frankel boys tennis program in 2014, and his arrival coincided almost exactly with the most successful stretch in school history — the Jaguars had never reached the state tournament before he became coach, and have since become a Division 4 fixture.",
-      "Before Frankel, Stark coached boys tennis at West Bloomfield High School for eight years. A retired teacher, he welcomes every player who comes out for the team — many of his players pick up a racket for the first time as freshmen and grow into varsity contributors who learn a sport they can play for life.",
+      "Before Frankel, Stark coached boys tennis at West Bloomfield High School for eight years. A retired teacher, he has helped turn a small-school roster into a yearly Division 4 postseason factor by developing players, building doubles teams and keeping the program competitive against much larger schools.",
       "Born December 2, 1953, in Detroit, Stark earned city, regional and state honors playing varsity tennis at Berkley High School, where he went 30-1 his senior year and was voted team MVP. He played #1 singles and doubles at Michigan State University from 1972-76 and was co-captain his senior year.",
       "As a competitor he won seven major USTA Men's Open titles. In 2004 he was ranked #1 in USTA 50-plus Men's in Michigan and #2 in the Mid-Central Region. He was also an elite squash player — a three-time USSRA National Semi-Finalist, nationally ranked #3 in men's 35-plus and #2 in men's 40-plus, with 15 USSRA Michigan squash titles.",
     ],

@@ -10,12 +10,21 @@ export function PageHeader({
   subtitle?: string;
 }) {
   return (
-    <div className="bg-[var(--navy)] text-white">
-      <div className="container-page py-12 sm:py-16">
+    <div className="relative overflow-hidden bg-[linear-gradient(135deg,#061b33_0%,#0a2647_48%,#103a6b_100%)] text-white">
+      <div
+        aria-hidden
+        className="absolute inset-0 opacity-[0.12]"
+        style={{
+          backgroundImage:
+            "linear-gradient(90deg, rgba(255,255,255,.22) 1px, transparent 1px), linear-gradient(0deg, rgba(255,255,255,.16) 1px, transparent 1px)",
+          backgroundSize: "48px 48px",
+        }}
+      />
+      <div className="container-page relative py-12 sm:py-16">
         {eyebrow && (
           <p className="text-xs font-bold uppercase tracking-[0.18em] text-[var(--sky)]">{eyebrow}</p>
         )}
-        <h1 className="mt-2 text-3xl sm:text-4xl font-extrabold tracking-tight">{title}</h1>
+        <h1 className="mt-2 max-w-4xl text-3xl sm:text-5xl font-extrabold tracking-tight">{title}</h1>
         {subtitle && <p className="mt-3 max-w-2xl text-white/80 leading-relaxed">{subtitle}</p>}
       </div>
     </div>
@@ -44,8 +53,8 @@ export function Badge({
 
 export function NeedsUpdateBanner({ children }: { children: ReactNode }) {
   return (
-    <div className="rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900 flex items-start gap-2">
-      <span aria-hidden className="mt-0.5">✎</span>
+    <div className="rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900 flex items-start gap-2">
+      <span aria-hidden className="mt-0.5 font-black">!</span>
       <p>{children}</p>
     </div>
   );

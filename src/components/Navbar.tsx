@@ -47,7 +47,7 @@ export function Navbar() {
               rel="noopener noreferrer"
               className="inline-flex items-center rounded-full bg-white text-[var(--navy)] px-3.5 py-1.5 font-bold hover:bg-[var(--sky)] transition-colors"
             >
-              🛍️ Shop
+              Store
             </a>
           </li>
         </ul>
@@ -92,11 +92,11 @@ export function Navbar() {
                 href={team.teamStore}
                 target="_blank"
                 rel="noopener noreferrer"
-                onClick={() => setOpen(false)}
-                className="block rounded-lg px-3 py-2.5 text-sm font-bold bg-white text-[var(--navy)] text-center"
-              >
-                🛍️ Team Store
-              </a>
+              onClick={() => setOpen(false)}
+              className="block rounded-lg px-3 py-2.5 text-sm font-bold bg-white text-[var(--navy)] text-center"
+            >
+              Team Store
+            </a>
             </li>
           </ul>
         </div>

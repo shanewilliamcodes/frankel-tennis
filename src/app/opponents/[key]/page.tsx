@@ -30,6 +30,7 @@ export default async function OpponentPage({
   if (!opp) notFound();
 
   const links = opp.links && opp.links.length > 0 ? opp.links : lookupLinks;
+  const recordedSeries = seriesRecord(opp.headToHead);
 
   return (
     <>
@@ -46,13 +47,20 @@ export default async function OpponentPage({
       </div>
 
       <section className="section">
-        <div className="container-page max-w-3xl">
-          {(opp.record2025 || opp.coach || opp.vsFrankel2025) && (
-            <div className="grid gap-4 sm:grid-cols-3">
+        <div className="container-page max-w-5xl">
+          {(opp.record2025 || opp.coach || opp.vsFrankel2025 || recordedSeries || opp.roster2025) && (
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {opp.record2025 && (
                 <div className="card p-5">
                   <p className="text-xs font-semibold uppercase tracking-wide text-[var(--muted)]">2025 Record</p>
                   <p className="mt-1 text-2xl font-extrabold text-[var(--navy)]">{opp.record2025}</p>
+                </div>
+              )}
+              {recordedSeries && (
+                <div className="card p-5">
+                  <p className="text-xs font-semibold uppercase tracking-wide text-[var(--muted)]">Recorded Series</p>
+                  <p className="mt-1 text-2xl font-extrabold text-[var(--navy)]">{recordedSeries}</p>
+                  <p className="mt-1 text-xs text-[var(--muted)]">Frankel W-L-T</p>
                 </div>
               )}
               {opp.vsFrankel2025 && (
@@ -67,6 +75,13 @@ export default async function OpponentPage({
                 <div className="card p-5">
                   <p className="text-xs font-semibold uppercase tracking-wide text-[var(--muted)]">Head Coach</p>
                   <p className="mt-1 text-sm font-bold text-[#25303f]">{opp.coach}</p>
+                </div>
+              )}
+              {opp.roster2025 && (
+                <div className="card p-5">
+                  <p className="text-xs font-semibold uppercase tracking-wide text-[var(--muted)]">2025 Roster</p>
+                  <p className="mt-1 text-2xl font-extrabold text-[var(--navy)]">{opp.roster2025.length}</p>
+                  <p className="mt-1 text-xs text-[var(--muted)]">players listed</p>
                 </div>
               )}
             </div>
