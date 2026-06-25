@@ -63,7 +63,6 @@ export const awards: AwardCategory[] = [
       "Larry Stark — Michigan Jewish Sports Hall of Fame (2006)",
       "Larry Stark — MHSTeCA Regional Coach of the Year at Frankel (2016, 2022, 2025)",
       "Larry Stark — MHSTeCA Regional Coach of the Year at West Bloomfield (2011)",
-      "Monica Stark — USPTA Certified Professional and strength & conditioning coach",
     ],
   },
   {
