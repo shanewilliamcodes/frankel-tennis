@@ -100,7 +100,8 @@ export const roster: Player[] = [
     slug: "luca-turner",
     name: "Luca Turner",
     grade: "Junior",
-    bio: "A junior and multi-year member of the program.",
+    bio: "A junior in his third year with the program who saw early-season varsity action in 2025.",
+    highlights: ["2025: played varsity singles and doubles in early-season matches"],
   },
   {
     slug: "noah-tepper",
@@ -114,8 +115,8 @@ export const roster: Player[] = [
     slug: "sammy-shanbaum",
     name: "Sammy Shanbaum",
     grade: "Sophomore",
-    bio: "A sophomore who saw varsity doubles time as a freshman in 2025.",
-    highlights: ["2025: played varsity doubles as a freshman"],
+    bio: "A sophomore who saw varsity doubles time as a freshman in 2025, picking up a doubles win.",
+    highlights: ["2025: played varsity doubles as a freshman, with a doubles win"],
   },
   { slug: "will-goodman", name: "Will Goodman", bio: "New to the varsity squad for the 2026 season." },
 ];
